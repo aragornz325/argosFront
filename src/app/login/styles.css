@@ -4,3 +4,11 @@
     font-size: 48px;
     
 }
+
+.img {
+    display: block;
+    margin-left: 1px;
+    margin-right: auto;
+    margin-top: 1px;
+    width: 25%;
+}
