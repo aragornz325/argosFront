@@ -8,11 +8,13 @@ import * as Yup from 'yup';
 import {validationSchema} from './validationSchema/schema';
 import {FormValues} from './interfaces/login.interface';
 import {queryLogin} from './querys/login.query';
+import { configVariable as confVar } from '@/config/config';
+
 
 import './style.css';
 
 export default function Login() {
-   
+
 
     const initialValues:FormValues = {
         email: '',

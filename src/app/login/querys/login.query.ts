@@ -1,23 +1,25 @@
 import axios from "axios";
+import {configVariable as confVar} from "../../../config/config";
 
 export const queryLogin = async ({email, password}: {email: string, password: string}) => {
 
     try {
-        const response = await axios.post(`https://argosapi-production.up.railway.app/login`, {
-            email,
-            password
-        },
-        {
-            headers: {
-                "Content-Type": "application/json",
-                "x-api-key": "e16d5b497563265f80ce3e6f0a2bcf6bfe0230795a05240249409f8d5cc90fce0718abc31e047b558c23845129fd186a736c9aa8a73cb987290839b4aa38e765",
+        const response = await axios.post(
+            `${confVar.backend.url}/auth/login`, 
+            {
+                email,
+                password
             },
-        }
-    
-    
-    );
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "x-api-key": confVar.backend.api_key,
+                },
+            }
+        );
 
-        console.log(response.data);
+        
+        alert('Inicio de sesión exitoso');
         return response.data;
 
     } catch (error) {
