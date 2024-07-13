@@ -2,6 +2,13 @@ import axios from "axios";
 
 export const queryLogin = async ({email, password}: {email: string, password: string}) => {
 
+    const backendUrl = process.env.NEXT_PUBLIC_URL_BACKEND;
+
+  if (!backendUrl) {
+    throw new Error("NEXT_PUBLIC_URL_BACKEND no está definida");
+  }
+
+  console.log(`Backend URL: ${backendUrl}`); // Verificación
     try {
         const response = await axios.post(`https://argosapi-production.up.railway.app/login`, {
             email,
