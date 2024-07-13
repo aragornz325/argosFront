@@ -1,0 +1,9 @@
+.button{
+    background-color: rgb(75, 75, 253);
+    color: white;
+    border-radius: 2px;
+    padding: 5px;
+}
+.titulo{
+    color: black;
+}
