@@ -29,7 +29,7 @@ export default function Login() {
         <div className='flex flex-col md:flex-row h-screen'>
             <div className='p-4 flex-1 flex flex-col justify-center items-center md:items-start'>
                 <h1 className='main_title_rigth'>Sistema</h1>
-                <h1 className='main_argos_title'>ARGOS</h1>
+                <h1 className='main_argos_title'>ARGOSsssss</h1>
             </div>
             <div className='p-4 flex-1 flex items-center justify-center'>
                 <div className='marco_login location_login color_login'>
