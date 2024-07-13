@@ -2,20 +2,17 @@
 
 import React, {useState, useEffect} from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
-
+import { useRouter} from 'next/navigation'
 
 import {validationSchema} from './validationSchema/schema';
 import {FormValues} from './interfaces/login.interface';
 import {queryLogin} from './querys/login.query';
-import { configVariable as confVar } from '@/config/config';
-
-
 import './style.css';
 
+
 export default function Login() {
-
-
+    const router = useRouter();
+    
     const initialValues:FormValues = {
         email: '',
         password: '',
@@ -23,14 +20,11 @@ export default function Login() {
     };
     
     const handleSubmit = (values:FormValues) => {
-        console.log(values);
         queryLogin(values);
-        
-
+        router.push('/');
     };
 
 
-    
     return (
         <div className='flex flex-col md:flex-row h-screen'>
             <div className='p-4 flex-1 flex flex-col justify-center items-center md:items-start'>

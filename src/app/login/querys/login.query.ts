@@ -1,8 +1,13 @@
 import axios from "axios";
 import {configVariable as confVar} from "../../../config/config";
+import { userStore } from "../../../store/user.store";
+import { authStore } from "@/store/auth.store";
+import Cookies from 'js-cookie';
 
 export const queryLogin = async ({email, password}: {email: string, password: string}) => {
-
+    const setIsLogged = userStore.getState().setIsLogged;
+    const isLogged = userStore.getState().isLogged;
+    const setToken = authStore.getState().setToken;
     try {
         const response = await axios.post(
             `${confVar.backend.url}/auth/login`, 
@@ -18,8 +23,10 @@ export const queryLogin = async ({email, password}: {email: string, password: st
             }
         );
 
-        
-        alert('Inicio de sesión exitoso');
+        setIsLogged(true);
+        setToken(response.data.token);
+        Cookies.set('isLogged', 'true'); // Set cookie
+        Cookies.set('token', response.data.token); // Set cookie
         return response.data;
 
     } catch (error) {
