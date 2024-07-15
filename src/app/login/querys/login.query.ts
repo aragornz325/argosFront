@@ -1,7 +1,7 @@
 import axios from "axios";
 import {configVariable as confVar} from "../../../config/config";
-import { userStore } from "../../../store/user.store";
-import { authStore } from "@/store/auth.store";
+import { userStore } from "../../../../src/store/user.store";
+import { authStore } from "../../../../src/store/auth.store";
 import Cookies from 'js-cookie';
 
 export const queryLogin = async ({email, password}: {email: string, password: string}) => {
@@ -27,13 +27,16 @@ export const queryLogin = async ({email, password}: {email: string, password: st
                 },
             }
         );
-        /*
+        
+        const { setIsLogged } = userStore.getState();
+        const { setToken } = authStore.getState();
+
         setIsLogged(true);
         setToken(response.data.token);
         Cookies.set('isLogged', 'true'); // Set cookie
         Cookies.set('token', response.data.token); // Set cookie
         return response.data;
-        */
+        
     } catch (error) {
         alert('Error al iniciar sesión');
         console.error(error);

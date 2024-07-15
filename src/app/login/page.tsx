@@ -1,34 +1,39 @@
 'use client';
 
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
-import { useRouter} from 'next/navigation'
-
-import {validationSchema} from './validationSchema/schema';
-import {FormValues} from './interfaces/login.interface';
-import {queryLogin} from './querys/login.query';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import { validationSchema } from './validationSchema/schema';
+import { FormValues } from './interfaces/login.interface';
+import { queryLogin } from './querys/login.query';
 import './style.css';
-
+import ojo from '../../../public/iconOjo.png';
 
 export default function Login() {
     const router = useRouter();
-    
-    const initialValues:FormValues = {
+    const [showPassword, setShowPassword] = useState(false);
+
+    const initialValues: FormValues = {
         email: '',
         password: '',
-        remember_me: false
+        remember_me: false,
     };
-    
-    const handleSubmit = (values:FormValues) => {
+
+    const handleSubmit = (values: FormValues) => {
         queryLogin(values);
         router.push('/');
     };
-    
+
+    const toggleShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
+
     return (
         <div className='flex flex-col md:flex-row h-screen'>
             <div className='p-4 flex-1 flex flex-col justify-center items-center md:items-start'>
                 <h1 className='main_title_rigth'>Sistema</h1>
-                <h1 className='main_argos_title'>ARGOSsssss</h1>
+                <h1 className='main_argos_title'>ARGOS</h1>
             </div>
             <div className='p-4 flex-1 flex items-center justify-center'>
                 <div className='marco_login location_login color_login'>
@@ -59,15 +64,24 @@ export default function Login() {
                                     <br />
                                     <div>
                                         <label htmlFor="password" className="sr-only">Password</label>
-                                        <Field
-                                            id="password"
-                                            name="password"
-                                            type="password"
-                                            autoComplete="current-password"
-                                            className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                                            placeholder="Password"
-                                        />
-                                        <ErrorMessage name="password" component="div" className="text-red-600 mt-2" />
+                                        <div className="relative">
+                                            <Field
+                                                id="password"
+                                                name="password"
+                                                type={showPassword ? 'text' : 'password'}
+                                                autoComplete="current-password"
+                                                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                                                placeholder="Password"
+                                            />
+                                            <button
+                                                type="button"
+                                                className="ml-2 flex items-center text-sm leading-5"
+                                                onClick={toggleShowPassword}
+                                            >
+                                                <Image src={ojo} alt='ojo' width={20} />
+                                            </button>
+                                            <ErrorMessage name="password" component="div" className="text-red-600 mt-2" />
+                                        </div>
                                     </div>
                                 </div>
 
@@ -109,3 +123,4 @@ export default function Login() {
         </div>
     );
 }
+
