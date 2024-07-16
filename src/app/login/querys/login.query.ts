@@ -7,15 +7,20 @@ import Cookies from 'js-cookie';
 export const queryLogin = async ({email, password}: {email: string, password: string}) => {
 
     const backendUrl = process.env.NEXT_PUBLIC_URL_BACKEND;
+    const backendUrlKey= process.env.NEXT_PUBLIC_X_API_KEY;
 
   if (!backendUrl) {
     throw new Error("NEXT_PUBLIC_URL_BACKEND no está definida");
   }
+  if(!backendUrlKey){
+    throw new Error("NEXT_PUBLIC_X_API_KEY no esta definida");
+  }
 
-  console.log(`Backend URL: ${backendUrl}`); // Verificación
+  //console.log(`Backend URL: ${backendUrl}`); // Verificación
+  //console.log(`Backend URL: ${backendUrlKey}`);
     try {
         const response = await axios.post(
-            `${confVar.backend.url}/auth/login`, 
+            `${confVar.backend.url}/api/auth/login`, 
             {
                 email,
                 password
@@ -28,6 +33,7 @@ export const queryLogin = async ({email, password}: {email: string, password: st
             }
         );
         
+
         const { setIsLogged } = userStore.getState();
         const { setToken } = authStore.getState();
 
@@ -39,7 +45,7 @@ export const queryLogin = async ({email, password}: {email: string, password: st
         
     } catch (error) {
         alert('Error al iniciar sesión');
-        console.error(error);
+        console.error(error);9
     }
 
 }
