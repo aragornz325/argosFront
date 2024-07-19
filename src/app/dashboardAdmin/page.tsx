@@ -1,17 +1,50 @@
 import React from "react";
-import Card from "../../components/card";  // Ajusta la ruta si es necesario
+import Card from "../../components/minCard";
+import MaxCard from "@/components/maxCard";  
+import "../dashboardAdmin/style.css"
+
 
 const DashAdminPage = () => {
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
-      <Card 
-        title="Santiago Collaud"
-        description="Mal estacionado"
-        imageUrl="https://via.placeholder.com/150"
-        date="20/12/2023"
-        confirm={false}
-      />
+    <div className="fontColor">
+      <h1>DASHBOARD ADMIN</h1>
+      
+      <div className="cards-container">
+        <Card
+          plateNumber="aaa123"
+          infractionCode="1-MalEstacionado-2"
+          driverName="Santiago Collaud"
+          photoUrl="https://via.placeholder.com/150"
+          date="2024-07-13"
+          confirm={true}
+        />
+      </div>
+
+      <div className="flex justify-center items-center min-h-screen">
+        <MaxCard 
+          plateNumber="aaa123"
+          createdAt="2024-06-22"
+          location="Hasenkamp"
+          vehicleBrand="Cadillac"
+          vehicleModel="Fiorino"
+          modelYear="2018"
+          color="Azul"
+          typeOfService="Uso Comercial"
+          infractionCode="123456"
+          lawArticleNumbre="555bis"
+          observation="Cosa cosita coson"
+          driverLicenseNumber= "951753"
+          driverAddress="Calle falsa 123"
+          driverPhone= "3435111222"
+          driverMail="rodrigo.m.quintero@gmail.com"
+          driverName="Constantino"
+          photoUrl="https://res.cloudinary.com/do5hovkvl/image/upload/v1719022137/argos/todb0chdlgyy6zkmd2dz.jpg"
+          confirm="true"
+          userId="89c88f51-5f5f-450c-b303-a5f2bff09a47"
+        ></MaxCard>
+      </div>
     </div>
+    
   );
 }
 

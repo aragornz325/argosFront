@@ -22,7 +22,7 @@ export default function Login() {
 
     const handleSubmit = (values: FormValues) => {
         queryLogin(values);
-        router.push('/');
+        router.push('/dashboardAdmin');
     };
 
     const toggleShowPassword = () => {

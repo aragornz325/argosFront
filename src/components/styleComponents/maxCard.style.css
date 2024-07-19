@@ -1,0 +1,43 @@
+.button {
+  background-color: rgb(75, 75, 253);
+  color: white;
+  border-radius: 2px;
+  padding: 5px;
+}
+
+.titulo {
+  color: rgb(0, 0, 0);
+}
+
+.cardContainerMax {
+  max-width: 1200px; /* Ocupa el ancho completo */
+  width: 100%;
+  margin: 0 auto; /* Centrar horizontalmente */
+  padding: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+  gap: 20px; /* Espacio entre columnas */
+}
+
+h1 {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.patente{
+    font-size: 60px;
+}
+
+.sizeFont{
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.titulos{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 25px;
+    text-decoration: underline;
+}
