@@ -40,9 +40,13 @@ const DashAdminPage = () => {
           driverName="Constantino"
           photoUrl="https://res.cloudinary.com/do5hovkvl/image/upload/v1719022137/argos/todb0chdlgyy6zkmd2dz.jpg"
           confirm="true"
-          userId="89c88f51-5f5f-450c-b303-a5f2bff09a47"
+          firstName="Rodrigo Martin"
+          lastName="Quintero"
+          latitude={-31.75}
+          longitude={-60.54}
         ></MaxCard>
       </div>
+    
     </div>
     
   );
