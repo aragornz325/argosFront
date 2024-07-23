@@ -1,7 +1,7 @@
 'use client'
 import "../components/styleComponents/maxCard.style.css"
 import MapComponent from "./MapComponent";
-import {APIProvider} from '@vis.gl/react-google-maps';
+
 
 interface CardProps {
   plateNumber: string;
@@ -52,6 +52,7 @@ const MaxCard: React.FC<CardProps> = ({
   latitude,
   longitude,
 }) => {
+  const defaultCenter= {latitude,longitude}
   return (
     <div className="cardContainerMax">
       <div className="rounded overflow-hidden shadow-lg titulo">
@@ -149,9 +150,7 @@ const MaxCard: React.FC<CardProps> = ({
           </div>
         </div>
           <div>
-            <h1>mapa</h1>
-            <MapComponent>
-            </MapComponent>
+            <MapComponent defaultCenter={defaultCenter}/>
           </div>
 
         <div className="px-6 pt-4 pb-2">
