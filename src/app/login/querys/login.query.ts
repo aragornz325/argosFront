@@ -32,6 +32,8 @@ export const queryLogin = async ({email, password}: {email: string, password: st
                 },
             }
         );
+
+        console.log(response); // Verificación
         
 
         const { setIsLogged } = userStore.getState();
@@ -45,7 +47,8 @@ export const queryLogin = async ({email, password}: {email: string, password: st
         
     } catch (error) {
         alert('Error al iniciar sesión');
-        console.error(error);9
+        console.error(error);
+        
     }
 
 }

@@ -3,14 +3,14 @@ import {APIProvider, Map, MapCameraChangedEvent} from '@vis.gl/react-google-maps
 
 const MapComponent = () => (
  <APIProvider apiKey={'AIzaSyAcRgfC_cXSdalIa_97CONCx9biSuzR5Fo'} onLoad={() => console.log('Maps API has loaded.')}>
-   <Map
-       defaultZoom={13}
-       defaultCenter={ { lat: -33.860664, lng: 151.208138 } }
-       mapId='bdd17c07476f3e5b'
-       onCameraChanged={ (ev: MapCameraChangedEvent) =>
-           console.log('camera changed:', ev.detail.center, 'zoom:', ev.detail.zoom)
-       }>
-   </Map>
+  <h1>este es el mapa</h1>
+  <Map
+      style={{width: '100vw', height: '100vh'}}
+      defaultCenter={ { lat: -33.860664, lng: 151.208138 } }
+      defaultZoom={3}
+      gestureHandling={'greedy'}
+      disableDefaultUI={true}
+    />
  </APIProvider>
 );
 
