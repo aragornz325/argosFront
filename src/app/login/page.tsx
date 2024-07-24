@@ -12,6 +12,7 @@ import ojo from '../../../public/iconOjo.png';
 
 export default function Login() {
     const router = useRouter();
+    
     const [showPassword, setShowPassword] = useState(false);
 
     const initialValues: FormValues = {
@@ -20,10 +21,14 @@ export default function Login() {
         remember_me: false,
     };
 
-    const handleSubmit = (values: FormValues) => {
-        queryLogin(values);
-
-        router.push('/dashboardAdmin');
+    const handleSubmit = async(values: FormValues) => {
+        
+        const login = await queryLogin(values);
+        
+        if(!login)
+            router.push('/login')
+        else
+            router.push('/dashboardAdmin');
     };
 
     const toggleShowPassword = () => {

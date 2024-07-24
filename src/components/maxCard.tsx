@@ -152,7 +152,6 @@ const MaxCard: React.FC<CardProps> = ({
           <div>
             <MapComponent defaultCenter={defaultCenter}/>
           </div>
-
         <div className="px-6 pt-4 pb-2">
           <button className="button">Remitir</button>
         </div>
