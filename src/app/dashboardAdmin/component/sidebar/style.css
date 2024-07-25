@@ -1,0 +1,51 @@
+.titulo{
+    font-size: 20px;
+    font-family: Helvetica;
+    font-style: italic;
+    background-color: rgba(78, 99, 255, 0.67);
+    border-radius: 5px;
+}
+
+.container {
+    display: flex;
+    min-height: 50vh;
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #0a02f6;
+    color: white;
+    padding: 15px;
+    border-radius: 5%;
+}
+
+.menu ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.menu li {
+    margin: 15px 0;
+}
+
+.menu a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    border-radius: 5px;
+}
+
+.menu a:hover {
+    background-color: #878686;
+    padding-left: 10px;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+.profile{
+  background-color: #4b45fe7a;
+  position: relative;
+}

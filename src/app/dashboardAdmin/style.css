@@ -1,11 +1,24 @@
-html, body {
+/*DASHADMINISTRADOR STYLE*/
+.body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-color: rgb(242, 241, 240); 
   }
 
-.fontColor{
-    color: red;
-    font-size: large;
-}
+  .contenedor{
+    background-image: linear-gradient(to bottom, rgb(0, 1, 39), rgb(11, 1, 124));
+  }
+  .alineacionLateral
+  {
+    display: flex;
+    height: 100vh;
+  }
+
+  .profileBar{
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: white; /* Color del texto */
+  }

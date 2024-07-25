@@ -37,10 +37,7 @@ export const queryLogin = async ({email, password}: {email: string, password: st
 
         const { setIsLogged } = userStore.getState();
         const { setToken } = authStore.getState();
-        /*
-        if(response.status <= 300)
-           console.log("ENTRA")
-        */
+        
         setIsLogged(true);
         setToken(response.data.token);
         Cookies.set('isLogged', 'true'); // Set cookie

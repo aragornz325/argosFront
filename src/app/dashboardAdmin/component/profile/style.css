@@ -1,0 +1,43 @@
+/*PROFILE STYLE*/
+.profileBar{
+    background-image: linear-gradient(to bottom, rgb(0, 6, 171), rgb(21, 2, 234));
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    margin: 15px;
+}
+
+.profileBar img{
+    margin-right: 10px;
+}
+
+.nombre{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 200%;
+    font-style: italic;
+}
+.mail{
+    font-family: serif;
+    font-size: 20px;
+}
+
+.posicionDerecha{
+    display: flex;
+    position:static;
+    padding-left: 40%;
+  }
+
+
+/* Estilos responsivos */
+@media(max-width: 768px){
+
+.nombre{
+ font-size: 100%;
+}
+.mail{
+    font-size: 50%;
+}
+}
