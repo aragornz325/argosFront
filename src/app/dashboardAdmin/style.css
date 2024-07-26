@@ -22,3 +22,8 @@
     padding: 20px;
     color: white; /* Color del texto */
   }
+
+  .posicionCards{
+    position: absolute;
+    
+  }

@@ -10,6 +10,9 @@
 
 .cardContainer {
     max-width: 200px; 
-    width: 100%; 
+    width: 200px;
+    height: 400px; 
     margin: 20px;
+    background-color: rgba(240, 248, 255, 0.633);
+    border-radius: 8px;
   }
