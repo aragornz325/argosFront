@@ -1,13 +1,18 @@
 /*DASHADMINISTRADOR STYLE*/
 .body {
     height: 100%;
+    width: auto;
     margin: 0;
     padding: 0;
   }
 
   .contenedor{
     background-image: linear-gradient(to bottom, rgb(0, 1, 39), rgb(11, 1, 124));
+    position: relative;
+    min-height: 100vh;
+    display: flex;
   }
+
   .alineacionLateral
   {
     display: flex;
@@ -25,5 +30,15 @@
 
   .posicionCards{
     position: absolute;
-    
+  }
+
+  .positionNewMultas {
+  position: absolute; /* Posiciona de forma absoluta dentro de .contenedor */
+  top: 15%; /* Ajusta según sea necesario */
+  left: 27%; /* Ajusta según sea necesario */
+}
+
+  .divColor{
+    border-radius: 10px;
+    background-color: rgb(1, 103, 193);
   }

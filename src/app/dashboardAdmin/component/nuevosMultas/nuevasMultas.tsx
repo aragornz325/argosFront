@@ -8,7 +8,6 @@ const NuevasMultas=()=>{
         <div>
             <Card
             plateNumber="aaa123"
-            infractionCode="1-MalEstacionado-2"
             driverName="Santiago Collaud"
             photoUrl="https://via.placeholder.com/150"
             date="2024-07-13"

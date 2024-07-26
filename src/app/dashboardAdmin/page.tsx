@@ -10,13 +10,16 @@ import NuevasMultas from "./component/nuevosMultas/nuevasMultas";
 const DashAdminPage = () => {
   return (
     
-    <div className="body contenedor alineacionLateral">
+    <div className="body contenedor alineacionLateral ">
       <SideBar></SideBar>
       <ProfileBar></ProfileBar>
-      <div>
+      <div className="positionNewMultas divColor flex flex-wrap gap-4 mt-4" id="multasSinVerificar">
+        <NuevasMultas/>
+        <NuevasMultas/>
+        <NuevasMultas/>
+        <NuevasMultas/>
         <NuevasMultas/>
       </div>
-      
     </div>
     
   );
