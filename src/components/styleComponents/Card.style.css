@@ -9,6 +9,12 @@
     color: rgb(0, 0, 0);
 }
 
+.nombre{
+    font-size: 15px;
+}
+.fecha{
+    font-size: 15px;
+}
 .cardContainer {
     max-width: 150px; 
     margin: 10px;
@@ -30,3 +36,31 @@
 .p_infCode{
     font-size: 15px;
 }
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  
+    .cardContainer {
+        max-width: 100px; 
+        margin: 10px;
+        background-color: rgba(240, 248, 255, 0.633);
+        border-radius: 8px;
+      }
+
+    .imgTamaño{
+        width: 100px;
+        height: 100px;
+        border-radius: 10px;
+    }
+
+    .patente{
+        font-size: 15px;
+        padding-right: 9px;
+    }
+
+    .nombre{
+        font-size: 15px;
+    }
+    .fecha{
+        font-size: 10px;
+    }
+  }

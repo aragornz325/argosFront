@@ -12,7 +12,7 @@ html, body {
 }
 
 .contenedor {
-  background-image: linear-gradient(to bottom, rgb(0, 1, 39), rgb(11, 1, 124));
+  
   flex: 1;
   display: flex;
   flex-direction: row;

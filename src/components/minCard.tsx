@@ -16,10 +16,10 @@ interface CardProps {
         <img className="w-full imgTamaño" src={photoUrl} alt={plateNumber}/>
         <div className="px-6 py-4">
           <div className="font-bold text-xl mb-2 patente">{plateNumber}</div>
-          <div className="text-gray-700 text-base">
+          <div className="text-gray-700 text-base nombre">
           {driverName}
           </div>
-          <div className="text-gray-700 text-base">
+          <div className="text-gray-700 text-base fecha">
           {date}
           </div>
           <div className="text-gray-700 text-base titulo">

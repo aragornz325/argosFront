@@ -1,5 +1,4 @@
 import React from "react";
-import "../nuevosMultas/style.css"
 import Card from "../../../../components/minCard";
 
 const NuevasMultas=()=>{
