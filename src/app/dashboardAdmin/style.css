@@ -1,44 +1,80 @@
 /*DASHADMINISTRADOR STYLE*/
-.body {
-    height: 100%;
-    width: auto;
-    margin: 0;
-    padding: 0;
-  }
-
-  .contenedor{
-    background-image: linear-gradient(to bottom, rgb(0, 1, 39), rgb(11, 1, 124));
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-  }
-
-  .alineacionLateral
-  {
-    display: flex;
-    height: 100vh;
-  }
-
-  .profileBar{
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    color: white; /* Color del texto */
-  }
-
-  .posicionCards{
-    position: absolute;
-  }
-
-  .positionNewMultas {
-  position: absolute; /* Posiciona de forma absoluta dentro de .contenedor */
-  top: 15%; /* Ajusta según sea necesario */
-  left: 27%; /* Ajusta según sea necesario */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-  .divColor{
-    border-radius: 10px;
-    background-color: rgb(1, 103, 193);
+.body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedor {
+  background-image: linear-gradient(to bottom, rgb(0, 1, 39), rgb(11, 1, 124));
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+}
+
+.alineacionLateral {
+  display: flex;
+  flex: 1;
+}
+
+.profileBar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  color: white; /* Color del texto */
+}
+
+.positionNewMultas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  position: absolute;
+  top: 15%;
+  left: 27%;
+}
+
+.divColor {
+  border-radius: 10px;
+  background-color: rgba(1, 103, 193, 0.341);
+  padding: 1rem; /* Espacio interno */
+}
+
+.posicionDiv{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  position: absolute;
+  top: 70%;
+  left: 30%;
+}
+
+.divBorde{
+  border: 1px solid rgb(244, 244, 244);
+}
+
+.divPadding{
+  padding-left: 20%;
+  padding-right: 20%;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  
+  .posicionDiv{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    position: absolute;
+    top: 75%;
+    left: 30%;
   }
+}

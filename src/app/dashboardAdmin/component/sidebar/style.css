@@ -6,6 +6,11 @@
     border-radius: 5px;
 }
 
+.posicion{
+    position: absolute;
+    top: 15%;
+    left: 1%;
+}
 .container {
     display: flex;
     min-height: 50vh;
@@ -16,7 +21,7 @@
     background-color: #0a02f6;
     color: white;
     padding: 15px;
-    border-radius: 5%;
+    border-radius: 2%;
 }
 
 .menu ul {
@@ -48,4 +53,26 @@
 .profile{
   background-color: #4b45fe7a;
   position: relative;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .titulo{
+        font-size: 10px;
+        font-family: Helvetica;
+        font-style: italic;
+        background-color: rgba(78, 99, 255, 0.67);
+        border-radius: 5px;
+    }
+    .sidebar {
+        width: auto;
+        background-color: #0a02f684;
+        color: white;
+        padding: auto;
+        border-radius: 5%;
+    }
+    .menu li {
+        margin: 5px 0;
+    }
+    
 }
