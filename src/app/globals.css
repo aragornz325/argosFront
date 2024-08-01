@@ -33,7 +33,7 @@ body {
   }
 
   .custom-gradient {
-    @apply bg-gradient-to-r from-[var(--background-start-rgb)] to-[var(--background-end-rgb)];
+    /*@apply bg-gradient-to-r from-[var(--background-start-rgb)] to-[var(--background-end-rgb)];*/
   }
 /* Clases personalizadas para cambiar el color de fondo */
   .bg-light-mode {
