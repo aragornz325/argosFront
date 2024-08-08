@@ -16,8 +16,8 @@ const DashAdminPage = () => {
     <div className="body custom-gradient text-foreground">
       <div className="contenedor">
         <SideBar />
-        <div className="alineacionLateral ">
-          <div className="sidebar bg-white dark:bg-gray-800">
+        <div className="alineacionLateral">
+          <div>
             <ThemeToggle />
           </div>
           <ProfileBar />

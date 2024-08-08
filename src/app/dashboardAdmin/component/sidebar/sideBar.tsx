@@ -1,12 +1,16 @@
 import React from 'react'
 import '../sidebar/style.css'
+import '../../../globals.css'
+
 import LogoutButton from '@/components/logOutButton';
 import Image from 'next/image';
+
 
 import nuevaMulta from '../../../../../public/NuevasMultas.png'
 import historial from '../../../../../public/Historial.png'
 import check from '../../../../../public/check.png'
 import config from '../../../../../public/config.png'
+import logout from '../../../../../public/logout.png'
 
 
 
@@ -20,7 +24,7 @@ const SideBar=()=>{
                         <ul>
                             <div> 
                                 <li className='hidden md:block titulo'>Sistema Argos</li>
-                                <li className='block md:hidden titulo'>Argos</li>
+                                <li className='block md:hidden titulo'></li>
                             </div>
 
                             <li className='hidden md:block'><a href="#option1">Nuevas Multas</a></li>
@@ -36,7 +40,9 @@ const SideBar=()=>{
                             <li className='hidden md:block'><a href="#option4">Configuracion</a></li>
                             <li className='block md:hidden'><a href="#option4"><Image src={config} alt='config' width={30} /></a></li>
 
-                            <LogoutButton/>
+                            <li className='hidden md:block'><a href="#option4"><LogoutButton/></a></li>
+                            <li className='block md:hidden'><LogoutButton/><Image src={logout} alt='logout' width={30}/></li>
+                            
                         </ul>
                     </nav>
                 </aside>

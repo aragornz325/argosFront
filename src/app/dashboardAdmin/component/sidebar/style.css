@@ -75,6 +75,16 @@
     .menu li {
         margin: 5px 0;
     }
+}
+/* Estilos para el modo oscuro */
+.dark .sidebar {
+    background-color: #1f2937; /* Color de fondo en modo oscuro */
+}
 
-    
+.dark .menu a {
+    color: #d1d5db; /* Color del texto en modo oscuro */
+}
+
+.dark .menu a:hover {
+    background-color: #4b5563; /* Color de fondo al pasar el ratón en modo oscuro */
 }

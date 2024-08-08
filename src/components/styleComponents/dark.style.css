@@ -1,0 +1,11 @@
+.posicion_toggleDark{
+    position:absolute;
+    margin-top: 0.2px;
+    margin-left: 9px;
+}
+
+.tamaño{
+    height: 50px;
+    width: 40px;
+    border-radius: 10px;
+}
