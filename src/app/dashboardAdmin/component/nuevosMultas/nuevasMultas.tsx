@@ -6,7 +6,7 @@ import { fetchMultas } from "../../querysMultas/multas.querys";
 interface Multa {
   plateNumber: string;
   driverName: string;
-  photoUrl: string;
+  photoURL: string;
   date: string;
   confirm: boolean;
 }
@@ -18,6 +18,7 @@ const NuevasMultas: React.FC = () => {
         const getMultas = async () => {
             try {
                 const data: Multa[] = await fetchMultas(); // Tipado del resultado de fetchMultas
+                //console.log("Datos obtenidos:", data);
                 setMultas(data);
             } catch (error) {
                 console.error("Error al obtener multas", error);
@@ -25,21 +26,26 @@ const NuevasMultas: React.FC = () => {
         };
 
         getMultas();
+   
     }, []);
-  return (
-    <div>
-      {multas.map((multa, index) => (
-        <Card
-          key={index}
-          plateNumber={multa.plateNumber}
-          driverName={multa.driverName}
-          photoUrl={multa.photoUrl}
-          date={multa.date}
-          confirm={multa.confirm}
-        />
-      ))}
-    </div>
-  );
-};
+    
+    return (
+        <div>
+          {multas.map((multa, index) => {
+            //console.log(`photoUrl de multa ${index}:`, multa.photoUrl); // Agrega este console.log
+            return (
+              <Card
+                key={index}
+                plateNumber={multa.plateNumber}
+                driverName={multa.driverName}
+                photoURL={multa.photoURL}
+                date={multa.date}
+                confirm={multa.confirm}
+              />
+            );
+          })}
+        </div>
+      );
+    };
 
 export default NuevasMultas;
