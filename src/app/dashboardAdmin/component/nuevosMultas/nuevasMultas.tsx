@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Card from "../../../../components/minCard";
 import { fetchMultas } from "../../querysMultas/multas.querys";
+import "../nuevosMultas/nuevasMultas.style.css"
 
 interface Multa {
   plateNumber: string;
@@ -30,7 +31,7 @@ const NuevasMultas: React.FC = () => {
     }, []);
     
     return (
-        <div>
+        <div className="gridContainer">
           {multas.map((multa, index) => {
             //console.log(`photoUrl de multa ${index}:`, multa.photoUrl); // Agrega este console.log
             return (

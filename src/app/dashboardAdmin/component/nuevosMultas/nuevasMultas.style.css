@@ -1,0 +1,12 @@
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .nuevasMultasContainer {
+      grid-template-columns: 1fr;
+    }
+  }
