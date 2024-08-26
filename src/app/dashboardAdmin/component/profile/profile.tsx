@@ -10,7 +10,7 @@ const ProfileBar=()=>{
         <div className='profileBar'>
             <Image src={avatarUser} alt='avatar'width={100} height={100}/>
             <div>
-                <h1 className='nombre'>Santiago Collaud</h1>
+                <h1 className='nombre_profile'>Santiago Collaud</h1>
                 <h2 className='mail'>santiago_collaud@gmail.com</h2>
             </div>
         </div>
