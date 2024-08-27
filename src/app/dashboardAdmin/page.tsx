@@ -1,6 +1,5 @@
+'use client';
 import React from "react";
-import Card from "../../components/minCard";
-import MaxCard from "@/components/maxCard";  
 import "../dashboardAdmin/style.css";
 
 import SideBar from "./component/sidebar/sideBar";

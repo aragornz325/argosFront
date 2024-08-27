@@ -33,7 +33,7 @@ export const queryLogin = async ({email, password}: {email: string, password: st
             }
         );
 
-        console.log(response); // Verificación
+        //console.log(response); // Verificación
 
         const { setIsLogged } = userStore.getState();
         const { setToken } = authStore.getState();
@@ -42,6 +42,9 @@ export const queryLogin = async ({email, password}: {email: string, password: st
         setToken(response.data.token);
         Cookies.set('isLogged', 'true'); // Set cookie
         Cookies.set('token', response.data.token); // Set cookie
+        Cookies.set('name',response.data.user.profile.firstName); //devuelve sin nombre por que no esta en la db
+        Cookies.set('mail',response.data.user.email);
+        //console.log(response.data.user.profile.firstName);
         return response.data;
         
     } catch (error) {

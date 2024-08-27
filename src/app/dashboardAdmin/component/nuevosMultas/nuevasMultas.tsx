@@ -13,7 +13,7 @@ interface Multa {
 }
 
 const NuevasMultas: React.FC = () => {
-    const [multas, setMultas] = useState<Multa[]>([]); // Tipado de useState
+  const [multas, setMultas] = useState<Multa[] | null>(null);
 
     useEffect(() => {
         const getMultas = async () => {
@@ -29,7 +29,11 @@ const NuevasMultas: React.FC = () => {
         getMultas();
    
     }, []);
-    
+
+    if(multas===null){
+      return<div>cargando...</div>;
+    }
+
     return (
         <div className="gridContainer">
           {multas.map((multa, index) => {
