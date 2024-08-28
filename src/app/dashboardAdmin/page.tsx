@@ -1,11 +1,12 @@
 'use client';
 import React from "react";
 import "../dashboardAdmin/style.css";
+import "../../app/globals.css"
 
 import SideBar from "./component/sidebar/sideBar";
 import ProfileBar from "../dashboardAdmin/component/profile/profile";
 import NuevasMultas from "./component/nuevosMultas/nuevasMultas";
-import "../../app/globals.css"
+
 
 import ThemeToggle from "@/components/modoDarkToggle";
 

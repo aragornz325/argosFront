@@ -17,6 +17,8 @@
     "@vis.gl/react-google-maps": "^1.1.0",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.2",
+    "boostrap": "^2.0.0",
+    "bootstrap": "^5.3.3",
     "dotenv-cli": "^7.4.2",
     "formik": "^2.4.6",
     "js-cookie": "^3.0.5",

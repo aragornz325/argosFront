@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 import Card from "../../../../components/minCard";
 import { fetchMultas } from "../../querysMultas/multas.querys";
 import "../nuevosMultas/nuevasMultas.style.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 
 interface Multa {
   plateNumber: string;
@@ -31,7 +34,13 @@ const NuevasMultas: React.FC = () => {
     }, []);
 
     if(multas===null){
-      return<div>cargando...</div>;
+      return (
+        <div className="d-flex justify-content-center align-items-center loaderContainer">
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Cargando...</span>
+          </div>
+        </div>
+      );
     }
 
     return (

@@ -12,3 +12,11 @@
       padding: 1rem;
     }
   }
+
+  .loaderContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    width: 100vh;
+  }
+  
