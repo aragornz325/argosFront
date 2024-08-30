@@ -149,6 +149,7 @@ const MaxCard: React.FC<CardProps> = ({
             <br />
           </div>
         </div>
+        
           <div>
             <MapComponent defaultCenter={defaultCenter}/>
           </div>

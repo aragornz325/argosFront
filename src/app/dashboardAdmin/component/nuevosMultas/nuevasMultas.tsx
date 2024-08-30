@@ -4,7 +4,7 @@ import Card from "../../../../components/minCard";
 import { fetchMultas } from "../../querysMultas/multas.querys";
 import "../nuevosMultas/nuevasMultas.style.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import ModalComponent from "@/components/modalCard";
 
 
 interface Multa {
@@ -17,6 +17,8 @@ interface Multa {
 
 const NuevasMultas: React.FC = () => {
   const [multas, setMultas] = useState<Multa[] | null>(null);
+  const [selectedMulta, setSelectedMulta] = useState<Multa | null>(null);
+  const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const getMultas = async () => {
@@ -33,6 +35,16 @@ const NuevasMultas: React.FC = () => {
    
     }, []);
 
+    const handleCardClick = (multa: Multa) => {
+      setSelectedMulta(multa);
+      setShowModal(true);
+    };
+
+    const handleCloseModal = () => {
+      setShowModal(false);
+      setSelectedMulta(null);
+    };
+
     if(multas===null){
       return (
         <div className="d-flex justify-content-center align-items-center loaderContainer">
@@ -44,22 +56,27 @@ const NuevasMultas: React.FC = () => {
     }
 
     return (
-        <div className="gridContainer">
-          {multas.map((multa, index) => {
-            //console.log(`photoUrl de multa ${index}:`, multa.photoUrl); // Agrega este console.log
-            return (
-              <Card
-                key={index}
-                plateNumber={multa.plateNumber}
-                driverName={multa.driverName}
-                photoURL={multa.photoURL}
-                date={multa.date}
-                confirm={multa.confirm}
-              />
-            );
-          })}
-        </div>
-      );
-    };
-
-export default NuevasMultas;
+      <div className="gridContainer">
+        {multas.map((multa, index) => (
+          <div key={index} onClick={() => handleCardClick(multa)}>
+            <Card
+              plateNumber={multa.plateNumber}
+              driverName={multa.driverName}
+              photoURL={multa.photoURL}
+              date={multa.date}
+              confirm={multa.confirm}
+            />
+          </div>
+        ))}
+        {selectedMulta && (
+          <ModalComponent 
+            show={showModal} 
+            handleClose={handleCloseModal} 
+            multaData={selectedMulta} 
+          />
+        )}
+      </div>
+    );
+  };
+  
+  export default NuevasMultas;
