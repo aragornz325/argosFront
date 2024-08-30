@@ -21,7 +21,9 @@ const Card: React.FC<CardProps> = ({ plateNumber, driverName, photoURL, date, co
           height={150}
         />
         <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2 patente">{plateNumber}</div>
+          <div className="font-bold text-xl mb-2">
+            {plateNumber}
+          </div>
           <div className="text-gray-5 text-base nombre_driver">
             {driverName}
           </div>

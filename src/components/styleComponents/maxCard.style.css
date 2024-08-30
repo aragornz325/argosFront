@@ -12,8 +12,6 @@
 .cardContainerMax {
   max-width: 1200px; /* Ocupa el ancho completo */
   width: 100%;
-  margin: 0 auto; /* Centrar horizontalmente */
-  padding: 20px;
 }
 
 .grid {

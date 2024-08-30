@@ -1,5 +1,6 @@
 'use client'
 import "../components/styleComponents/maxCard.style.css"
+import Image from "next/image";
 import MapComponent from "./MapComponent";
 
 
@@ -19,7 +20,7 @@ interface CardProps {
   driverPhone: string;
   driverMail: string;
   driverName: string;
-  photoUrl: string;
+  photoURL: string;
   confirm: string;
   lastName: string;
   firstName: string;
@@ -44,7 +45,7 @@ const MaxCard: React.FC<CardProps> = ({
   driverPhone,
   driverMail,
   driverName,
-  photoUrl,
+  photoURL,
   confirm,
   lastName,
   firstName,
@@ -53,10 +54,17 @@ const MaxCard: React.FC<CardProps> = ({
   longitude,
 }) => {
   const defaultCenter= {latitude,longitude}
+  //console.log(photoURL)
   return (
     <div className="cardContainerMax">
       <div className="rounded overflow-hidden shadow-lg titulo">
-        <img className="w-80 h-100" src={photoUrl} alt={plateNumber} />
+      <Image
+          className="w-full"
+          src={photoURL}
+          alt={plateNumber}
+          width={600}
+          height={600}
+        />
         <div className="px-6 py-4">
           <div>
             <h1>Patente</h1>

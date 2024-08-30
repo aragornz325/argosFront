@@ -1,0 +1,20 @@
+.modalTitle{
+    background-color:rgb(0, 15, 178);
+    background-image: linear-gradient(to left, white, blue);
+    color: black;
+}
+
+.modalBody{
+    background-color: rgba(6, 6, 205, 0.419);
+}
+
+.modalFooter{
+    background-color: rgba(6, 6, 205, 0.419);
+}
+
+.loaderContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    width: 100vh;
+  }
