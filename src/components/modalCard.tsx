@@ -4,15 +4,17 @@ import MaxCard from './maxCard';
 import '../components/styleComponents/modal.style.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 interface ModalProps{
     show: boolean;
     handleClose: ()=> void;
     multaData: any;
+    darkMode: boolean;  // popp dark mode
 }
 const ModalComponent: React.FC<ModalProps> = ({ show, handleClose, multaData }) => {
     if(multaData===null){
         return (
-            <div className="d-flex justify-content-center align-items-center loaderContainer">
+            <div className="d-flex justify-content-center align-items-center loaderContainer ">
               <div className="spinner-border text-primary" role="status">
                 <span className="visually-hidden">Cargando...</span>
               </div>
@@ -22,13 +24,13 @@ const ModalComponent: React.FC<ModalProps> = ({ show, handleClose, multaData }) 
     
     return (
       <Modal show={show} onHide={handleClose} size="lg" centered>
-        <Modal.Header closeButton className='modalTitle'>
+        <Modal.Header closeButton className='dark modalTitle'>
           <Modal.Title>Detalle de la Multa</Modal.Title>
         </Modal.Header>
-        <Modal.Body className='modalBody'>
+        <Modal.Body className='dark modalBody'>
           <MaxCard {...multaData} /> {/* Pasa los datos a MaxCard */}
         </Modal.Body>
-        <Modal.Footer className='modalFooter'>
+        <Modal.Footer className='dark modalFooter'>
           <Button variant="secondary" onClick={handleClose}>
             Cerrar
           </Button>

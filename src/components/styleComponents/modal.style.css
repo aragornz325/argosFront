@@ -5,11 +5,11 @@
 }
 
 .modalBody{
-    background-color: rgba(6, 6, 205, 0.419);
+    background-color: rgba(3, 3, 255, 0.688);
 }
 
 .modalFooter{
-    background-color: rgba(6, 6, 205, 0.419);
+    background-color: rgba(3, 3, 255, 0.688);
 }
 
 .loaderContainer {
@@ -18,3 +18,18 @@
     align-items: center; 
     width: 100vh;
   }
+
+/*DARK STYLE*/
+
+.dark .modalTitle{
+    background-color:rgba(1, 1, 44,0.419);
+    background-image: linear-gradient(to left, rgb(10, 3, 143), rgb(2, 2, 32));
+    color: rgb(207, 199, 248);
+}
+.dark .modalBody{
+    background-color: rgb(1, 1, 44);
+}
+
+.dark .modalFooter{
+    background-color: rgb(1, 1, 44);
+}
