@@ -44,12 +44,17 @@ export default function Login() {
                 <div className='marco_login location_login color_login'>
                     <h3 className='color_font_login'>Bienvenido al sistema 👋</h3>
                     <Formik
-                        initialValues={initialValues}
-                        validationSchema={validationSchema}
-                        onSubmit={(values, { setSubmitting }) => {
-                            handleSubmit(values);
-                            setSubmitting(false);
-                        }}
+                       initialValues={initialValues}
+                       validationSchema={validationSchema}
+                       onSubmit={async (values, { setSubmitting }) => {
+                           try {
+                               await handleSubmit(values);
+                           } catch (error) {
+                               console.error(error);
+                           } finally {
+                               setSubmitting(false); // Aquí se asegura que el botón vuelve a estado normal tras finalizar el envío
+                           }
+                       }}
                     >
                         {({ isSubmitting }) => (
                             <Form className="mt-8 space-y-6">
@@ -83,6 +88,7 @@ export default function Login() {
                                                 className="ml-2 flex items-center text-sm leading-5"
                                                 onClick={toggleShowPassword}
                                             >
+                                                
                                                 <Image src={ojo} alt='ojo' width={20} />
                                             </button>
                                             <ErrorMessage name="password" component="div" className="text-red-600 mt-2" />
@@ -111,8 +117,8 @@ export default function Login() {
                                         type="submit"
                                         className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                         disabled={isSubmitting}
-                                    >
-                                        Sign in
+                                    > 
+                                        {isSubmitting ? 'Cargando...' : 'Sign in'}
                                     </button>
                                 </div>
                                 <div className="text-sm">

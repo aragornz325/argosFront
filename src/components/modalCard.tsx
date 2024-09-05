@@ -14,10 +14,8 @@ interface ModalProps{
 const ModalComponent: React.FC<ModalProps> = ({ show, handleClose, multaData }) => {
     if(multaData===null){
         return (
-            <div className="d-flex justify-content-center align-items-center loaderContainer ">
-              <div className="spinner-border text-primary" role="status">
-                <span className="visually-hidden">Cargando...</span>
-              </div>
+            <div>
+                <span>Cargando...</span>
             </div>
           );
       }
