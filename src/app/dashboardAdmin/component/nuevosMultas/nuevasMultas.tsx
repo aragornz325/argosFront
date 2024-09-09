@@ -5,6 +5,7 @@ import { fetchMultas } from "../../querysMultas/multas.querys";
 import "../nuevosMultas/nuevasMultas.style.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ModalComponent from "@/components/modalCard";
+import { boolean } from "yup";
 
 
 interface Multa {
@@ -73,6 +74,7 @@ const NuevasMultas: React.FC = () => {
             show={showModal} 
             handleClose={handleCloseModal} 
             multaData={selectedMulta} 
+            darkMode={true}
           />
         )}
       </div>

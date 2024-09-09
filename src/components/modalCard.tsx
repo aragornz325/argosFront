@@ -11,7 +11,7 @@ interface ModalProps{
     multaData: any;
     darkMode: boolean;  // popp dark mode
 }
-const ModalComponent: React.FC<ModalProps> = ({ show, handleClose, multaData }) => {
+const ModalComponent: React.FC<ModalProps> = ({ show, handleClose, multaData,darkMode }) => {
     if(multaData===null){
         return (
             <div>

@@ -21,7 +21,6 @@ const DashAdminPage = () => {
             <ThemeToggle />
           </div>
           <ProfileBar />
-
           <div className="positionNewMultas divColor divBorde">
             <NuevasMultas/>
           </div>
