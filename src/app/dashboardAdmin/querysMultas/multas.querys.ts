@@ -10,6 +10,8 @@ interface Multa {
     photoURL: string;
     date: string;
     confirm: boolean;
+    vehicleBrand: string;
+    vehicleModel: string;
   }
   
 
