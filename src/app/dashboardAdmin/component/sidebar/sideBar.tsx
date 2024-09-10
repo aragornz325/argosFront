@@ -6,6 +6,7 @@ import LogoutButton from '@/components/logOutButton';
 import Image from 'next/image';
 
 
+
 import nuevaMulta from '../../../../../public/NuevasMultas.png'
 import historial from '../../../../../public/Historial.png'
 import check from '../../../../../public/check.png'
@@ -27,7 +28,7 @@ const SideBar=()=>{
                                 <li className='block md:hidden titulo'></li>
                             </div>
 
-                            <li className='hidden md:block'><a href="#option1">Nuevas Multas</a></li>
+                            <li className='hidden md:block'><a href="/historialMultas">Historial</a></li>
                             <li className='block md:hidden'><a href="#option1"><Image src={nuevaMulta} alt='nuevaMulta' width={30} /></a></li>
 
                             <li className='hidden md:block'><a href="#option2">Historial</a></li>

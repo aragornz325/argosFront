@@ -6,6 +6,7 @@ import "../nuevosMultas/nuevasMultas.style.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ModalComponent from "@/components/modalCard";
 import { boolean } from "yup";
+import { button } from "@nextui-org/react";
 
 
 interface Multa {
@@ -57,6 +58,8 @@ const NuevasMultas: React.FC = () => {
     }
 
     return (
+      <div>
+        <h3>Multas no confirmadas</h3>
       <div className="gridContainer">
         {multas.map((multa, index) => (
           <div key={index} onClick={() => handleCardClick(multa)}>
@@ -78,6 +81,7 @@ const NuevasMultas: React.FC = () => {
           />
         )}
       </div>
+    </div>
     );
   };
   
