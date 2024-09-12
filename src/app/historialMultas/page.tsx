@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from "react";
-import Historial from "@/components/listaHitorial";
+import Historial from "@/components/listaHistorial";
 import { fetchMultas } from "../dashboardAdmin/querysMultas/multas.querys";
 import SideBar from "../dashboardAdmin/component/sidebar/sideBar";
 import ProfileBar from "../dashboardAdmin/component/profile/profile";
@@ -63,7 +63,9 @@ const HistorialMultas: React.FC = () => {
           <ThemeToggle />
           <ProfileBar />
           <div className="positionNewMultas divColor divBorde">
-            <h3>Historial de Multas</h3>
+            <span>
+              <h3>Historial de Multas</h3>
+            </span>
             <div className="gridContainer">
               {multas.map((multa, index) => (
                 <div key={index} onClick={() => handleCardClick(multa)}>
