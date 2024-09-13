@@ -25,9 +25,9 @@ const DashAdminPage = () => {
             <NuevasMultas/>
           </div>
           
-          {/*<div className="posicionDiv divBorde divPadding divColor">
+          <div className="posicionDiv divBorde divColor">
             <h1>Novedades</h1>
-          </div>*/}
+          </div>
         </div>
       </div>
     </div>
