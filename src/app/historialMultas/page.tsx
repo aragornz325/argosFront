@@ -2,10 +2,12 @@
 import React, { useEffect, useState } from "react";
 import Historial from "@/components/listaHistorial";
 import { fetchMultas } from "../dashboardAdmin/querysMultas/multas.querys";
+
 import SideBar from "../dashboardAdmin/component/sidebar/sideBar";
 import ProfileBar from "../dashboardAdmin/component/profile/profile";
 import ThemeToggle from "@/components/modoDarkToggle";
 import ModalComponent from "@/components/modalCard"; // Si también quieres un modal aquí
+
 import "../historialMultas/historial.style.css"
 
 interface Multa {
@@ -66,7 +68,7 @@ const HistorialMultas: React.FC = () => {
             <span>
               <h3>Historial de Multas</h3>
             </span>
-            <div className="gridContainer">
+            <div>
               {multas.map((multa, index) => (
                 <div key={index} onClick={() => handleCardClick(multa)}>
                   <Historial

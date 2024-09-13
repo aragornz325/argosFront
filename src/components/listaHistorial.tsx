@@ -11,14 +11,14 @@ interface CardProps {
 
   const Historial: React.FC<CardProps> = ({ plateNumber, driverName, date, confirm,vehicleBrand,vehicleModel }) => {
     return (
-      <div className="historial-card">
+      <div className="historial-card cardContainer">
       <div className="px-2 py-2">
         <div className="font-bold text-xl mb-2">
-        <span >{plateNumber}</span>  - 
-          <span>{driverName}</span>  - 
-          <span>{date}</span>  - 
-          <span>{vehicleBrand}</span>  - 
-          <span>{vehicleModel}</span>  - 
+        <span>{plateNumber}</span><span> - </span> 
+          <span>{driverName}</span><span> - </span>
+          <span>{date}</span><span> - </span>
+          <span>{vehicleBrand}</span><span> - </span>
+          <span>{vehicleModel}</span><span> - </span>
           <span>{confirm ? "Confirmada" : "No Confirmada"}</span>
         </div>
       </div>

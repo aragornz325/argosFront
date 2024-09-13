@@ -20,12 +20,29 @@
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     width: 100%; /* Asegúrate de que la tarjeta ocupe todo el ancho disponible */
   }
+
+
+  .cardContainer {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .historial-card:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: rgb(160, 160, 160);
+    border: 1px rgb(255, 253, 253) solid;
+  }
+
   
   .font-bold {
     font-size: 6rem; /* Ajusta el tamaño de la fuente */
   }
-  .patente{
-    font-size:2%;
+  .pantente{
+    font-size:50%;
   }
   
-  
+  /*DARCK STYLE*/
+  .dark .historial-card:hover{
+    background-color: rgb(117, 117, 117);
+    border: 1px black solid;
+  }

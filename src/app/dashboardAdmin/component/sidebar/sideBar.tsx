@@ -28,11 +28,11 @@ const SideBar=()=>{
                                 <li className='block md:hidden titulo'></li>
                             </div>
 
-                            <li className='hidden md:block'><a href="/historialMultas">Historial</a></li>
+                            <li className='hidden md:block'><a href="/dashboardAdmin">Nuevas Multas</a></li>
                             <li className='block md:hidden'><a href="#option1"><Image src={nuevaMulta} alt='nuevaMulta' width={30} /></a></li>
 
-                            <li className='hidden md:block'><a href="#option2">Historial</a></li>
-                            <li className='block md:hidden'><a href="#option2"><Image src={historial} alt='historial' width={30} /></a></li>
+                            <li className='hidden md:block'><a href="/historialMultas">Historial</a></li>
+                            <li className='block md:hidden'><a href="/historialMultas"><Image src={historial} alt='historial' width={30} /></a></li>
                             
                             <li className='hidden md:block'><a href="#option3">Confirmar</a></li>
                             <li className='block md:hidden'><a href="#option3"><Image src={check} alt='check' width={30} /></a></li>
