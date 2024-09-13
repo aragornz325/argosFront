@@ -21,10 +21,11 @@ const DashAdminPage = () => {
             <ThemeToggle />
           </div>
           <ProfileBar />
+          
           <div className="positionNewMultas divColor divBorde">
             <NuevasMultas/>
-          </div>
           
+          </div>
           <div className="posicionDiv divBorde divColor">
             <h1>Novedades</h1>
           </div>
