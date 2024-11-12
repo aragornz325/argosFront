@@ -3,12 +3,7 @@ import React, { useEffect, useState } from "react";
 import Historial from "@/components/listaHistorial";
 import { fetchMultas } from "../dashboardAdmin/querysMultas/multas.querys";
 
-import SideBar from "../dashboardAdmin/component/sidebar/sideBar";
-import ProfileBar from "../dashboardAdmin/component/profile/profile";
-import ThemeToggle from "@/components/modoDarkToggle";
 import ModalComponent from "@/components/modalCard"; // Si también quieres un modal aquí
-
-import "../historialMultas/historial.style.css"
 
 interface Multa {
   plateNumber: string;
@@ -49,7 +44,7 @@ const HistorialMultas: React.FC = () => {
 
   if (multas === null) {
     return (
-      <div className="d-flex justify-content-center align-items-center loaderContainer">
+      <div>
         <div className="spinner-border text-primary" role="status">
           <span className="visually-hidden">Cargando...</span>
         </div>
@@ -58,28 +53,18 @@ const HistorialMultas: React.FC = () => {
   }
 
   return (
-    <div className="body custom-gradient text-foreground">
-      <div className="contenedor">
-        <SideBar />
-        <div className="alineacionLateral">
-          <ThemeToggle />
-          <ProfileBar />
-          <div className="positionNewMultas divColor divBorde">
-            <span>
-              <h3>Historial de Multas</h3>
-            </span>
-            <div>
-              {multas.map((multa, index) => (
-                <div key={index} onClick={() => handleCardClick(multa)}>
-                  <Historial
-                    plateNumber={multa.plateNumber}
-                    driverName={multa.driverName}
-                    date={multa.date}
-                    confirm={multa.confirm}
-                    vehicleBrand={multa.vehicleBrand}
-                    vehicleModel={multa.vehicleModel}
-                  />
-                </div>
+    <div style={{ fontSize: "1px" }}>
+        {multas.map((multa, index) => (
+          <div key={index} onClick={() => handleCardClick(multa)}>
+            <Historial
+              plateNumber={multa.plateNumber}
+              driverName={multa.driverName}
+              date={multa.date}
+              confirm={multa.confirm}
+              vehicleBrand={multa.vehicleBrand}
+              vehicleModel={multa.vehicleModel}
+              />
+            </div>
               ))}
               {selectedMulta && (
                 <ModalComponent
@@ -89,10 +74,6 @@ const HistorialMultas: React.FC = () => {
                   darkMode={true}
                 />
               )}
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   );
 };

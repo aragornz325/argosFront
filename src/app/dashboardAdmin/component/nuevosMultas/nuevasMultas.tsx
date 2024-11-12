@@ -17,10 +17,13 @@ interface Multa {
   confirm: boolean;
 }
 
+const ITEMS_PER_PAGE = 8; // Número de multas por página
+
 const NuevasMultas: React.FC = () => {
   const [multas, setMultas] = useState<Multa[] | null>(null);
   const [selectedMulta, setSelectedMulta] = useState<Multa | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
         const getMultas = async () => {
@@ -46,6 +49,21 @@ const NuevasMultas: React.FC = () => {
       setShowModal(false);
       setSelectedMulta(null);
     };
+
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const currentMultas = multas ? multas.slice(startIndex, startIndex + ITEMS_PER_PAGE) : [];
+
+  const handleNextPage = () => {
+    if (multas && currentPage < Math.ceil(multas.length / ITEMS_PER_PAGE)) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handlePreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
     if(multas===null){
       return (
@@ -80,6 +98,24 @@ const NuevasMultas: React.FC = () => {
             darkMode={true}
           />
         )}
+      </div>
+      {/* Botones de navegación */}
+      <div className="pagination-container flex justify-center">
+        <button
+          className="btn btn-primary m-1"
+          onClick={handlePreviousPage}
+          disabled={currentPage === 1}
+        >
+          Anterior
+        </button>
+        <span>Página {currentPage}</span>
+        <button
+          className="btn btn-primary m-1"
+          onClick={handleNextPage}
+          disabled={currentPage === Math.ceil(multas.length / ITEMS_PER_PAGE)}
+        >
+          Siguiente
+        </button>
       </div>
     </div>
     );

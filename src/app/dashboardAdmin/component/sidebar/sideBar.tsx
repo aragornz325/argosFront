@@ -6,7 +6,6 @@ import LogoutButton from '@/components/logOutButton';
 import Image from 'next/image';
 
 
-
 import nuevaMulta from '../../../../../public/NuevasMultas.png'
 import historial from '../../../../../public/Historial.png'
 import check from '../../../../../public/check.png'

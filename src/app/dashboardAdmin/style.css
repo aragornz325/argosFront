@@ -12,6 +12,7 @@ html, body {
 }
 
 .contenedor {
+  position: relative;
   display: flex;
   flex-direction: row; /* Sidebar y contenido en fila */
   height: 100%;
@@ -47,11 +48,8 @@ html, body {
 }
 
 .posicionDiv{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
   position: absolute;
-  top: 70%;
+  top: 150%;
   left: 30%;
 }
 
