@@ -4,6 +4,7 @@ import Historial from "@/components/listaHistorial";
 import { fetchMultas } from "../dashboardAdmin/querysMultas/multas.querys";
 
 import ModalComponent from "@/components/modalCard"; // Si también quieres un modal aquí
+import "../../app/historialMultas/style.css" 
 
 interface Multa {
   plateNumber: string;
@@ -53,7 +54,7 @@ const HistorialMultas: React.FC = () => {
   }
 
   return (
-    <div style={{ fontSize: "1px" }}>
+    <div>
         {multas.map((multa, index) => (
           <div key={index} onClick={() => handleCardClick(multa)}>
             <Historial

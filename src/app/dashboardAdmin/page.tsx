@@ -52,21 +52,24 @@ const DashAdminPage = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-6 bg-cardBackground overflow-y-auto text-sm">
+      <main className="flex-1 p-6 bg-cardBackground overflow-y-auto">
         {/* Header */}
-        <header className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold">¡Bienvenido al Sistema Argos!</h1>
-          <div className="flex items-center space-x-4">
-            <button className="text-sm text-white">🌐 Español</button>
-            <ThemeToggle />
-            <LogoutButton />
+        <header className="flex justify-between items-center mb-8 ">
+          <div className="text-2xl">¡Bienvenido al Sistema Argos!</div>
+            <div className="flex items-center space-x-4">
+              <button className="text-sm text-white">🌐 Español</button>
+              <ThemeToggle />
+              <LogoutButton />
           </div>
         </header>
 
         {/* Content Sections */}
         <section>
+          <div>
+            <HistorialMultas/>
+          </div>
         {/*<NuevasMultas />*/}
-        {/*<HistorialMultas/>*/}
+        
           {/* Renderizado condicional según la sección activa 
           {activeSection === "nuevasMultas" ? (
             <NuevasMultas />

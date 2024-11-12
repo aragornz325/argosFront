@@ -13,7 +13,7 @@ interface CardProps {
     return (
       <div className="historial-card cardContainer">
       <div className="px-2 py-2">
-        <div className="font-bold text-xl mb-2">
+        <div className="mb-1">
         <span>{plateNumber}</span><span> - </span> 
           <span>{driverName}</span><span> - </span>
           <span>{date}</span><span> - </span>
