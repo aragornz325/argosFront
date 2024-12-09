@@ -11,13 +11,6 @@ html, body {
   flex-direction: column;
 }
 
-.contenedor {
-  position: relative;
-  display: flex;
-  flex-direction: row; /* Sidebar y contenido en fila */
-  height: 100%;
-}
-
 .alineacionLateral {
   display: flex;
   flex: 1;
@@ -32,25 +25,10 @@ html, body {
   color: white; /* Color del texto */
 }
 
-.positionNewMultas {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  position: absolute;
-  top: 15%;
-  left: 20%;
-}
-
 .divColor {
   border-radius: 10px;
   background-color: rgba(1, 103, 193, 0.341);
   padding: 1rem; /* Espacio interno */
-}
-
-.posicionDiv{
-  position: absolute;
-  top: 150%;
-  left: 30%;
 }
 
 .divBorde{

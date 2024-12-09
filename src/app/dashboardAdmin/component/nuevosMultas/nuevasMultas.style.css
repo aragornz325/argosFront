@@ -1,22 +1,7 @@
-.gridContainer {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1rem;
-    padding: 1rem;
-  }
-
-  @media (max-width: 768px) {
-    .gridContainer {
-      grid-template-columns: repeat(1, 1fr);
-      gap: 1rem;
-      padding: 1rem;
-    }
-  }
-
-  .loaderContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    width: 100vh;
-  }
+.loaderContainer {
+  width: 100%; /* Ocupa el ancho disponible */
+  height: 100vh; /* Centrado vertical */
+  justify-content: center;
+  align-items: center;
+}
   

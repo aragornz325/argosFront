@@ -2,8 +2,10 @@
 import React, { useEffect, useState } from "react";
 import Card from "../../../../components/minCard";
 import { fetchMultas } from "../../querysMultas/multas.querys";
+
 import "../nuevosMultas/nuevasMultas.style.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import ModalComponent from "@/components/modalCard";
 import { boolean } from "yup";
 import { button } from "@nextui-org/react";
@@ -76,9 +78,9 @@ const NuevasMultas: React.FC = () => {
     }
 
     return (
-      <div>
+      <div className="border w-full">
         <h3>Multas no confirmadas</h3>
-      <div className="gridContainer">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" >
         {multas.map((multa, index) => (
           <div key={index} onClick={() => handleCardClick(multa)}>
             <Card

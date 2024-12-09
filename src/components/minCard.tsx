@@ -12,28 +12,34 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ plateNumber, driverName, photoURL, date, confirm }) => {
   return (
     <div className="cardContainer">
-      <div className="max-w-sm rounded overflow-hidden shadow-lg titulo">
-        <Image
-          className="w-full imgTamaño"
-          src={photoURL}
-          alt={plateNumber}
-          width={150}
-          height={150}
-        />
-        <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">
-            {plateNumber}
-          </div>
-          <div className="text-gray-5 text-base nombre_driver">
-            {driverName}
-          </div>
-          <div className="text-gray-700 text-base fecha">
-            {date}
-          </div>
-          <div className="text-gray-700 text-base titulo">
-            {confirm ? "Confirmada" : "No Confirmada"}
+      <div className="rounded overflow-hidden shadow-lg titulo flex">
+        <div className="w-1/3 p-4">
+          <Image
+            className="w-full "
+            src={photoURL}
+            alt={plateNumber}
+            width={150}
+            height={150}
+          />
+        </div>
+        
+        <div className="w-2/3 p-4">
+          <div className="px-6 py-4">
+            <div className="font-bold text-xl mb-2">
+              {plateNumber}
+            </div>
+            <div className="text-gray-5 text-base nombre_driver">
+              {driverName}
+            </div>
+            <div className="text-gray-700 text-base fecha">
+              {date}
+            </div>
+            <div className="text-gray-700 text-base titulo">
+              {confirm ? "Confirmada" : "No Confirmada"}
+            </div>
           </div>
         </div>
+        
       </div>
     </div>
   );
