@@ -13,6 +13,10 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 100, 100;
     --background-end-rgb: 1, 1, 124;
+    --bg-dark: #11132b; /* Fondo oscuro por defecto */
+    --bg-light: #F4F4F9; /* Fondo claro */
+    --text-dark: #FFFFFF;
+    --text-light: #000000;
   }
 }
 
@@ -36,6 +40,18 @@ body {
   @apply bg-white text-black;
 }
 
-.dark body {
+.dark {
   @apply bg-gray-900 text-white;
+}
+.dark body {
+  background-color: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+.dark .bg-cardBackground {
+  background-color: #0e1231; /* Ajusta el color del fondo oscuro de las tarjetas */
+}
+
+.dark .bg-highlight {
+  background-color: #bebebe; /* Ajusta el color del sidebar */
 }

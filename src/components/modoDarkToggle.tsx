@@ -31,13 +31,12 @@ const ThemeToggle = () => {
     return (
         <button
             onClick={toggleDarkMode}
-            className="fixed top-4 right-4 p-2 bg-gray-200 dark:bg-gray-800 text-gray-900 dark:text-gray-100 rounded
-                       posicion_toggleDark tamaño "
+            className=""
         >
             {isDarkMode ? (
-                <Image src={sun} alt='sun' width={20} height={20} className="dark:invert"/>
+                <Image src={sun} alt='sun' width={20} height={20} className="dark:invert"/> // darkMode ACTIVATE
             ) : (
-                <Image src={moon} alt='moon' width={20} height={20} className="dark:invert" />
+                <Image src={moon} alt='moon' width={20} height={20} className="dark:invert" /> // darckMode DEACTIVATE
             )}
         </button>
     );

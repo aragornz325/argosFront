@@ -78,7 +78,7 @@ const NuevasMultas: React.FC = () => {
     }
 
     return (
-      <div className="border w-full">
+      <div className="w-full">
         <h3>Multas no confirmadas</h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" >
         {multas.map((multa, index) => (

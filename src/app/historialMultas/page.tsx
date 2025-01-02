@@ -54,7 +54,7 @@ const HistorialMultas: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className="text-white">
         {multas.map((multa, index) => (
           <div key={index} onClick={() => handleCardClick(multa)}>
             <Historial
