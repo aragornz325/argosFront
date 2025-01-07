@@ -1,6 +1,8 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { fetchAllUsers } from "../../querysUsers/getUsers.querys";
+import ModalEditUser from './modalEditUser';
+import { data } from 'autoprefixer';
 
 interface User {
   id: string;
@@ -30,7 +32,8 @@ interface User {
 const UserAdmin: React.FC = () => {
   const [users, setUsers] = useState<User[] | null>(null);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
-  const [showModal, setShowModal] = useState(false); // Modal
+  const [showModal, setShowModal] = useState(false);
+  const [showModalEditUser, setShowModalEditUser] = useState(false);
 
   useEffect(() => {
     const getAllUsers = async () => {
@@ -44,6 +47,21 @@ const UserAdmin: React.FC = () => {
 
     getAllUsers();
   }, []);
+
+  const handleUpdateUser = (updatedUser: User) => {
+    setUsers((prevUsers) => {
+      if (!prevUsers) return null;
+      return prevUsers.map((user) => (user.id === updatedUser.id ? updatedUser : user));
+    });
+    setSelectedUser(updatedUser);
+    setShowModalEditUser(false);
+  };
+
+  const openEditModal = (user: User) => {
+    setSelectedUser(user);
+    setShowModalEditUser(true);  // Se asegura de abrir el modal de edición
+    //console.log('abre modal de edición',user);
+  };
 
   return (
     <div>
@@ -73,18 +91,37 @@ const UserAdmin: React.FC = () => {
                   >
                     Ver detalles
                   </button>
+                  <button
+                    className="btn btn-secondary"
+                    onClick={() => {
+                      setSelectedUser(user);
+                      //console.log('Abriendo modal de edición:', user); // Agregar para verificar
+                      openEditModal(user)  // Esto debería cambiar el estado para mostrar el modal
+                    }}  // Usa la función para abrir el modal
+                  >
+                    Editar
+                  </button>
                 </div>
               </div>
             </div>
           ))
         ) : (
           <div className="d-flex justify-content-center align-items-center loaderContainer">
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Cargando...</span>
+            <div className="spinner-border text-primary" role="status">
+              <span className="visually-hidden">Cargando...</span>
+            </div>
           </div>
-        </div>
         )}
       </div>
+
+      {/* Modal para editar usuario */}
+      {showModalEditUser && selectedUser && (
+        <ModalEditUser 
+          user={selectedUser}  
+          onClose={() => setShowModalEditUser(false)} 
+          onSave={handleUpdateUser} 
+        />
+      )}
 
       {/* Modal para mostrar detalles del usuario */}
       {showModal && selectedUser && (
@@ -101,14 +138,21 @@ const UserAdmin: React.FC = () => {
             <p><strong>Rol:</strong> {selectedUser.role}</p>
             <p><strong>Edad:</strong> {selectedUser.profile.age}</p>
             <p><strong>Teléfono:</strong> {selectedUser.profile.phone}</p>
-            <p><strong>Dirección:</strong> {selectedUser.profile.address}, {selectedUser.profile.city}, {selectedUser.profile.country} ({selectedUser.profile.postalCode})</p>
-            <p><strong>Biografía:</strong> {selectedUser.profile.bio || 'No disponible'}</p>
+            <p><strong>Dirección:</strong> {selectedUser.profile.address}</p>
+            <p><strong>Ciudad:</strong> {selectedUser.profile.city}</p>
+            <p><strong>País:</strong> {selectedUser.profile.country}</p>
+            <p><strong>Código postal:</strong> {selectedUser.profile.postalCode}</p>
+            <p><strong>Fecha de nacimiento:</strong> {new Date(selectedUser.profile.dateOfBirth).toLocaleDateString('es-ES', {
+              day: '2-digit',
+              month: '2-digit',
+              year: 'numeric'
+            })}</p>
+            <p><strong>Formación:</strong> {selectedUser.profile.education}</p>
+            <p><strong>Empleo:</strong> {selectedUser.profile.employment}</p>
             <p><strong>Género:</strong> {selectedUser.profile.gender}</p>
-            <p><strong>Fecha de Nacimiento:</strong> {new Date(selectedUser.profile.dateOfBirth).toLocaleDateString()}</p>
-            <p><strong>Educación:</strong> {selectedUser.profile.education || 'No disponible'}</p>
-            <p><strong>Trabajo:</strong> {selectedUser.profile.employment || 'No disponible'}</p>
-            <p><strong>Intereses:</strong> {selectedUser.profile.interests || 'No disponible'}</p>
-            <p><strong>Redes Sociales:</strong> {selectedUser.profile.socialMediaLinks || 'No disponible'}</p>
+            <p><strong>Intereses:</strong> {selectedUser.profile.interests}</p>
+            <p><strong>Redes sociales:</strong> {selectedUser.profile.socialMediaLinks}</p>
+
             <div className="text-right mt-4">
               <button
                 className="btn btn-secondary"
@@ -125,4 +169,3 @@ const UserAdmin: React.FC = () => {
 };
 
 export default UserAdmin;
-

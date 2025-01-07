@@ -43,7 +43,7 @@ interface User {
     try {
       const token = Cookies.get('token'); 
   
-      const response = await axios.get(`${backendUrl}/api/profile`, {
+      const response = await axios.put(`${backendUrl}/profile`, {
         headers: {
           "Content-Type": "application/json",
           "x-api-key": backendUrlKey,
