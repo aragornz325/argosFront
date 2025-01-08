@@ -44,16 +44,30 @@ export const updateUserProfile = async (userId: string, updatedProfile: UserProf
     try {
         const token = Cookies.get('token');
 
-        const response = await axios.put(`${backendUrl}/api/User/profile${userId}`, updatedProfile, {
+        console.log("Actualizando perfil del usuario", userId, updatedProfile);
+
+        // Hacer la solicitud PATCH
+        const response = await axios({
+            method: 'PATCH',  // Asegúrate de que sea PATCH
+            url: `${backendUrl}/api/user/profile/${userId}`,
             headers: {
-                "Content-Type": "application/json",
-                "x-api-key": backendUrlKey,
-                "Authorization": `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                'x-api-key': backendUrlKey,
+                'Authorization': `Bearer ${token}`,
             },
+            data: updatedProfile,
         });
+        console.log('Respuesta:', response.data);
 
         return response.data;
     } catch (error) {
+        /*if(axios.isAxiosError(error))
+        {
+            console.error('Error de Axios:', error.response?.data);
+            console.error('Código de estado:', error.response?.status); 
+            console.error('Encabezados:', error.response?.headers);
+            console.error('Mensaje de error:', error.message);
+        }*/
         console.error("Error al actualizar el perfil del usuario", error);
         throw error;
     }
