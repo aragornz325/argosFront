@@ -41,34 +41,30 @@ export const updateUserProfile = async (userId: string, updatedProfile: UserProf
         throw new Error("NEXT_PUBLIC_X_API_KEY no está definida");
     }
 
+    //console.log("URL_BACKEND",backendUrl);
+    //console.log("X_API_KEY",backendUrlKey);
     try {
         const token = Cookies.get('token');
 
         console.log("Actualizando perfil del usuario", userId, updatedProfile);
 
-        // Hacer la solicitud PATCH
+        // Hacer la solicitud PATCH para actualizar el perfil
         const response = await axios({
-            method: 'PATCH',  // Asegúrate de que sea PATCH
-            url: `${backendUrl}/api/user/profile/${userId}`,
+            method: 'PATCH',  // Se utiliza PATCH para actualizaciones parciales
+            url: `${backendUrl}/api/user/profile/${userId}`,  // Asegúrate de que la URL sea correcta
             headers: {
                 'Content-Type': 'application/json',
                 'x-api-key': backendUrlKey,
-                'Authorization': `Bearer ${token}`,
+                'Authorization': `Bearer ${token}`,  // Asegúrate de que el token sea válido
             },
-            data: updatedProfile,
+            data: updatedProfile,  // El cuerpo de la solicitud contiene el perfil actualizado
         });
+
         console.log('Respuesta:', response.data);
 
-        return response.data;
+        return response.data;  // El perfil actualizado se encuentra en response.data
     } catch (error) {
-        /*if(axios.isAxiosError(error))
-        {
-            console.error('Error de Axios:', error.response?.data);
-            console.error('Código de estado:', error.response?.status); 
-            console.error('Encabezados:', error.response?.headers);
-            console.error('Mensaje de error:', error.message);
-        }*/
         console.error("Error al actualizar el perfil del usuario", error);
-        throw error;
+        throw error;  // Lanza el error para que pueda ser manejado en el lugar donde se llame a la función
     }
 };

@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchAllUsers } from "../../querysUsers/getUsers.querys";
 import ModalEditUser from './modalEditUser';
-import { data } from 'autoprefixer';
 
 interface User {
   id: string;
@@ -10,6 +9,7 @@ interface User {
   email: string;
   role: string;
   profile: {
+    id: string;
     firstName: string;
     lastName: string;
     age: number;
@@ -59,8 +59,8 @@ const UserAdmin: React.FC = () => {
 
   const openEditModal = (user: User) => {
     setSelectedUser(user);
-    setShowModalEditUser(true);  // Se asegura de abrir el modal de edición
-    //console.log('abre modal de edición',user);
+    setShowModalEditUser(true);  // Asegurarse de abrir el modal de edición
+    console.log('profile', user.profile.id);
   };
 
   return (
@@ -69,7 +69,7 @@ const UserAdmin: React.FC = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
         {users ? (
           users.map((user) => (
-            <div key={user.id} className="card bg-base-100 shadow-xl">
+            <div key={user.profile.id} className="card bg-base-100 shadow-xl">
               <figure>
                 <img
                   src={user.profile.avatarUrl || `https://api.dicebear.com/7.x/initials/svg?seed=${user.username}`}
@@ -95,9 +95,8 @@ const UserAdmin: React.FC = () => {
                     className="btn btn-secondary"
                     onClick={() => {
                       setSelectedUser(user);
-                      //console.log('Abriendo modal de edición:', user); // Agregar para verificar
-                      openEditModal(user)  // Esto debería cambiar el estado para mostrar el modal
-                    }}  // Usa la función para abrir el modal
+                      openEditModal(user);  // Abre el modal de edición
+                    }}
                   >
                     Editar
                   </button>
@@ -131,29 +130,24 @@ const UserAdmin: React.FC = () => {
             <img
               src={selectedUser.profile.avatarUrl || `https://api.dicebear.com/7.x/initials/svg?seed=${selectedUser.username}`}
               alt={selectedUser.username}
-              className="w-24 h-24 rounded-full mx-auto mb-4"
+              className="w-24 h-24 object-cover rounded-full mb-4"
             />
-            <p><strong>Nombre:</strong> {selectedUser.profile.firstName} {selectedUser.profile.lastName}</p>
             <p><strong>Email:</strong> {selectedUser.email}</p>
             <p><strong>Rol:</strong> {selectedUser.role}</p>
+            <p><strong>Nombre:</strong> {selectedUser.profile.firstName} {selectedUser.profile.lastName}</p>
             <p><strong>Edad:</strong> {selectedUser.profile.age}</p>
             <p><strong>Teléfono:</strong> {selectedUser.profile.phone}</p>
             <p><strong>Dirección:</strong> {selectedUser.profile.address}</p>
             <p><strong>Ciudad:</strong> {selectedUser.profile.city}</p>
             <p><strong>País:</strong> {selectedUser.profile.country}</p>
             <p><strong>Código postal:</strong> {selectedUser.profile.postalCode}</p>
-            <p><strong>Fecha de nacimiento:</strong> {new Date(selectedUser.profile.dateOfBirth).toLocaleDateString('es-ES', {
-              day: '2-digit',
-              month: '2-digit',
-              year: 'numeric'
-            })}</p>
+            <p><strong>Fecha de nacimiento:</strong> {selectedUser.profile.dateOfBirth}</p>
             <p><strong>Formación:</strong> {selectedUser.profile.education}</p>
             <p><strong>Empleo:</strong> {selectedUser.profile.employment}</p>
             <p><strong>Género:</strong> {selectedUser.profile.gender}</p>
             <p><strong>Intereses:</strong> {selectedUser.profile.interests}</p>
             <p><strong>Redes sociales:</strong> {selectedUser.profile.socialMediaLinks}</p>
-
-            <div className="text-right mt-4">
+            <div className="flex justify-end mt-4">
               <button
                 className="btn btn-secondary"
                 onClick={() => setShowModal(false)}

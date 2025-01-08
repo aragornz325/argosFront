@@ -9,6 +9,7 @@ interface User {
     email: string;
     role: string;
     profile: {
+      id:string;
       firstName: string;
       lastName: string;
       age: number;
@@ -51,7 +52,6 @@ interface User {
         },
       });
       
-    
       //console.log("Respuesta completa de la API:", response.data);
   
       return response.data;
