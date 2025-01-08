@@ -48,18 +48,18 @@ export const updateUserProfile = async (userId: string, updatedProfile: UserProf
     try {
         const token = Cookies.get('token');
 
-        console.log("🟢 Actualizando perfil del usuario:", userId);
-        console.log("🟢 Perfil actualizado recibido:", updatedProfile);
+        //console.log("🟢 Actualizando perfil del usuario:", userId);
+        //console.log("🟢 Perfil actualizado recibido:", updatedProfile);
 
         // Desestructurar y eliminar propiedades no permitidas
         const { id, createdAt, updatedAt, ...profileToUpdate } = updatedProfile;
 
-        console.log("✅ Campos eliminados correctamente:");
+        //console.log("✅ Campos eliminados correctamente:");
         //console.log("id:", id);
         //console.log("createdAt:", createdAt);
         //console.log("updatedAt:", updatedAt);
-        console.log("🔄 Datos a enviar al backend:", profileToUpdate);
-        console.log("date of birth", profileToUpdate.dateOfBirth);
+        //console.log("🔄 Datos a enviar al backend:", profileToUpdate);
+        //console.log("date of birth", profileToUpdate.dateOfBirth);
 
         // Hacer la solicitud PATCH para actualizar el perfil
         const response = await axios({

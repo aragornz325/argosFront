@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchAllUsers } from "../../querysUsers/getUsers.querys";
 import ModalEditUser from './modalEditUser';
+import ModalNewUser from './newUser/modal.newUser';
 
 interface User {
   id: string;
@@ -75,7 +76,8 @@ const UserAdmin: React.FC = () => {
   return (
     <div>
       <h1 className="text-2xl font-bold mb-4 text-white">Panel de administración de usuarios</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+      <ModalNewUser />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 z-50">
         {users ? (
           users.map((user) => (
             <div key={user.profile.id} className="card bg-base-100 shadow-xl">
