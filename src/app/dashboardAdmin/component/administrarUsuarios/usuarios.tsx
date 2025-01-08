@@ -60,8 +60,17 @@ const UserAdmin: React.FC = () => {
   const openEditModal = (user: User) => {
     setSelectedUser(user);
     setShowModalEditUser(true);  // Asegurarse de abrir el modal de edición
-    console.log('profile', user.profile.id);
+    //console.log('profile', user.profile.id);
   };
+
+  const formatDateToDDMMYYYY = (date: string): string => {
+    if (!date) return '';
+    const d = new Date(date);
+    const day = String(d.getDate()).padStart(2, '0');
+    const month = String(d.getMonth() + 1).padStart(2, '0'); // Los meses comienzan desde 0
+    const year = d.getFullYear();
+    return `${day}-${month}-${year}`;
+};
 
   return (
     <div>
@@ -141,7 +150,7 @@ const UserAdmin: React.FC = () => {
             <p><strong>Ciudad:</strong> {selectedUser.profile.city}</p>
             <p><strong>País:</strong> {selectedUser.profile.country}</p>
             <p><strong>Código postal:</strong> {selectedUser.profile.postalCode}</p>
-            <p><strong>Fecha de nacimiento:</strong> {selectedUser.profile.dateOfBirth}</p>
+            <p><strong>Fecha de nacimiento:</strong> {formatDateToDDMMYYYY(selectedUser.profile.dateOfBirth)}</p>
             <p><strong>Formación:</strong> {selectedUser.profile.education}</p>
             <p><strong>Empleo:</strong> {selectedUser.profile.employment}</p>
             <p><strong>Género:</strong> {selectedUser.profile.gender}</p>

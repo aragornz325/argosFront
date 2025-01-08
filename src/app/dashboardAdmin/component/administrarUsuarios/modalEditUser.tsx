@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { updateUserProfile } from '../../queryProfile/updateProfile.query';
-import Cookies from 'js-cookie';
 
 interface UserProfile {
     id: string;
@@ -36,17 +35,25 @@ interface ModalEditUserProps {
     onSave: (updatedUser: User) => void;
 }
 
+// Formatea la fecha al formato aceptado por input date
 const formatDateToInput = (date: string): string => {
+    if (!date) return '';
     const d = new Date(date);
-    const day = String(d.getUTCDate()).padStart(2, '0');
-    const month = String(d.getUTCMonth() + 1).padStart(2, '0');
-    const year = d.getUTCFullYear();
-    return `${day}/${month}/${year}`;
+    return isNaN(d.getTime()) ? '' : d.toISOString().split('T')[0]; // Devuelve solo la parte de la fecha (YYYY-MM-DD)
 };
 
+// Convierte el input date al formato ISO
 const formatDateToISO = (date: string): string => {
-    const [day, month, year] = date.split('/');
-    return `${year}-${month}-${day}T00:00:00.000Z`;
+    if (!date) return ''; 
+
+    // Verifica si la fecha ya está en formato ISO
+    const isISO = date.match(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z/);
+    if (isISO) return date; // Si ya está en formato ISO, retorna la fecha tal cual
+
+    // Si no está en formato ISO, realiza la conversión
+    const [year, month, day] = date.split('-');
+    if (!year || !month || !day) return ''; 
+    return `${year}-${month}-${day}T00:00:00.000Z`; // Formato correcto de fecha
 };
 
 const ModalEditUser: React.FC<ModalEditUserProps> = ({ user, onClose, onSave }) => {
@@ -57,25 +64,33 @@ const ModalEditUser: React.FC<ModalEditUserProps> = ({ user, onClose, onSave }) 
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-        setUpdatedUser((prev) => {
-            if (name === 'profile.dateOfBirth') {
-                return {
-                    ...prev,
-                    profile: {
-                        ...prev.profile,
-                        dateOfBirth: value
-                    }
-                };
-            }
-            const [parent, key] = name.split('.');
-            return {
+    
+        // Si el campo es de tipo 'date', formatea la fecha de vuelta a ISO
+        if (name === 'profile.dateOfBirth' && value) {
+            // Convertimos la fecha de 'YYYY-MM-DD' a formato ISO
+            const isoDate = formatDateToISO(value);
+            setUpdatedUser((prev) => ({
                 ...prev,
-                [parent]: {
-                    ...(prev as any)[parent],
-                    [key]: value
+                profile: {
+                    ...prev.profile,
+                    dateOfBirth: isoDate, // Actualizamos la fecha con el formato ISO
+                },
+            }));
+        } else {
+            setUpdatedUser((prev) => {
+                const keys = name.split('.');
+                if (keys.length === 2) {
+                    return {
+                        ...prev,
+                        [keys[0]]: {
+                            ...(prev as any)[keys[0]],
+                            [keys[1]]: value,
+                        },
+                    };
                 }
-            };
-        });
+                return { ...prev, [name]: value };
+            });
+        }
     };
 
     const handleSave = () => {
@@ -85,204 +100,86 @@ const ModalEditUser: React.FC<ModalEditUserProps> = ({ user, onClose, onSave }) 
     const handleConfirmSave = async (confirmed: boolean) => {
         if (confirmed) {
             setLoading(true);
-            const userToSave = {
-                ...updatedUser,
-                profile: {
-                    ...updatedUser.profile,
-                    dateOfBirth: formatDateToISO(updatedUser.profile.dateOfBirth),
-                },
-            };
+            setError(null);
 
             try {
+                console.log("dateOfBirth antes de guardar:", updatedUser.profile.dateOfBirth);
+                const userToSave = {
+                    ...updatedUser,
+                    profile: {
+                        ...updatedUser.profile,
+                        dateOfBirth: formatDateToISO(updatedUser.profile.dateOfBirth), // Solo convertir aquí cuando se guarda
+                    },
+                    
+                };
+                console.log("dateOfBirth después de la conversión a ISO:", userToSave.profile.dateOfBirth); // Muestra el valor de la fecha después de la conversión
+
                 await updateUserProfile(updatedUser.id, userToSave.profile);
-                onSave(updatedUser);
+                onSave(userToSave);
                 onClose();
             } catch (error) {
-                setError('Error al guardar los datos');
+                setError('Error al guardar los datos. Intente nuevamente.');
             } finally {
                 setLoading(false);
+                setShowConfirmation(false);
             }
+        } else {
+            setShowConfirmation(false);
         }
-        setShowConfirmation(false);
     };
-
-    if (loading) return <div>Cargando...</div>;
-    if (error) return <div>{error}</div>;
+     //console.log("dateOfBirth en modal", updatedUser.profile.dateOfBirth);
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-            <div className="bg-white p-6 rounded-lg shadow-lg max-w-md overflow-auto max-h-[90vh] relative">
-                <h2>Editar Usuario</h2>
+            <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full overflow-auto max-h-[90vh] relative">
+                <h2 className="text-xl font-semibold mb-4">Editar Usuario</h2>
+
+                {loading && <div className="text-center">⏳ Guardando cambios...</div>}
+                {error && <div className="text-red-500 text-center mb-4">{error}</div>}
 
                 {showConfirmation ? (
-                    <div className="flex justify-around mt-4">
-                        <p>¿Estás seguro de que deseas guardar los cambios?</p>
-                        <button className="btn" onClick={() => handleConfirmSave(true)}>Sí</button>
-                        <button className="btn" onClick={() => handleConfirmSave(false)}>No</button>
+                    <div className="flex flex-col items-center">
+                        <p className="mb-4">¿Estás seguro de que deseas guardar los cambios?</p>
+                        <div className="flex gap-4">
+                            <button className="btn btn-primary" onClick={() => handleConfirmSave(true)}>Sí</button>
+                            <button className="btn btn-secondary" onClick={() => handleConfirmSave(false)}>No</button>
+                        </div>
                     </div>
                 ) : (
                     <form onSubmit={(e) => e.preventDefault()}>
-                        <label>
-                            Nombre:
-                            <input
-                                type="text"
-                                name="profile.firstName"
-                                value={updatedUser.profile.firstName}
-                                onChange={handleChange}
-                                className="border p-2 mb-4 w-full"
-                            />
-                        </label>
-
-                        <label>
-                            Apellido:
-                            <input
-                                type="text"
-                                name="profile.lastName"
-                                value={updatedUser.profile.lastName}
-                                onChange={handleChange}
-                                className="border p-2 mb-4 w-full"
-                            />
-                        </label>
-
-                        <label>
-                            Edad:
-                            <input
-                                type="number"
-                                name="profile.age"
-                                value={updatedUser.profile.age}
-                                onChange={handleChange}
-                                className="border p-2 mb-4 w-full"
-                            />
-                        </label>
-
-                        <label>
-                            Teléfono:
-                            <input
-                                type="text"
-                                name="profile.phone"
-                                value={updatedUser.profile.phone}
-                                onChange={handleChange}
-                                className="border p-2 mb-4 w-full"
-                            />
-                        </label>
-
-                        <label>
-                            Dirección:
-                            <input
-                                type="text"
-                                name="profile.address"
-                                value={updatedUser.profile.address}
-                                onChange={handleChange}
-                                className="border p-2 mb-4 w-full"
-                            />
-                        </label>
-
-                        <label>
-                            Ciudad:
-                            <input
-                                type="text"
-                                name="profile.city"
-                                value={updatedUser.profile.city}
-                                onChange={handleChange}
-                                className="border p-2 mb-4 w-full"
-                            />
-                        </label>
-
-                        <label>
-                            País:
-                            <input
-                                type="text"
-                                name="profile.country"
-                                value={updatedUser.profile.country}
-                                onChange={handleChange}
-                                className="border p-2 mb-4 w-full"
-                            />
-                        </label>
-
-                        <label>
-                            Código postal:
-                            <input
-                                type="text"
-                                name="profile.postalCode"
-                                value={updatedUser.profile.postalCode}
-                                onChange={handleChange}
-                                className="border p-2 mb-4 w-full"
-                            />
-                        </label>
-
-                        <label>
-                            Fecha de nacimiento:
-                            <input
-                                type="text"
-                                name="profile.dateOfBirth"
-                                value={formatDateToInput(updatedUser.profile.dateOfBirth)}
-                                placeholder="dd/mm/yyyy"
-                                onChange={handleChange}
-                                className="border p-2 mb-4 w-full"
-                            />
-                        </label>
-
-                        <label>
-                            Formación:
-                            <input
-                                type="text"
-                                name="profile.education"
-                                value={updatedUser.profile.education}
-                                onChange={handleChange}
-                                className="border p-2 mb-4 w-full"
-                            />
-                        </label>
-
-                        <label>
-                            Empleo:
-                            <input
-                                type="text"
-                                name="profile.employment"
-                                value={updatedUser.profile.employment}
-                                onChange={handleChange}
-                                className="border p-2 mb-4 w-full"
-                            />
-                        </label>
-
-                        <label>
-                            Género:
-                            <select
-                                name="profile.gender"
-                                value={updatedUser.profile.gender}
-                                className="border p-2 mb-4 w-full"
-                                onChange={handleChange}
-                            >
-                                <option value="">Seleccione</option>
-                                <option value="masculino">Masculino</option>
-                                <option value="femenino">Femenino</option>
-                            </select>
-                        </label>
-
-                        <label>
-                            Intereses:
-                            <input
-                                type="text"
-                                name="profile.interests"
-                                value={updatedUser.profile.interests}
-                                onChange={handleChange}
-                                className="border p-2 mb-4 w-full"
-                            />
-                        </label>
-
-                        <label>
-                            Redes sociales:
-                            <input
-                                type="text"
-                                name="profile.socialMediaLinks"
-                                value={updatedUser.profile.socialMediaLinks}
-                                onChange={handleChange}
-                                className="border p-2 mb-4 w-full"
-                            />
-                        </label>
+                        {[
+                            { label: 'Nombre', name: 'profile.firstName', type: 'text' },
+                            { label: 'Apellido', name: 'profile.lastName', type: 'text' },
+                            { label: 'Edad', name: 'profile.age', type: 'number' },
+                            { label: 'Teléfono', name: 'profile.phone', type: 'text' },
+                            { label: 'Dirección', name: 'profile.address', type: 'text' },
+                            { label: 'Ciudad', name: 'profile.city', type: 'text' },
+                            { label: 'País', name: 'profile.country', type: 'text' },
+                            { label: 'Código Postal', name: 'profile.postalCode', type: 'text' },
+                            { label: 'Fecha de Nacimiento', name: 'profile.dateOfBirth', type: 'date' },
+                            { label: 'Formación', name: 'profile.education', type: 'text' },
+                            { label: 'Empleo', name: 'profile.employment', type: 'text' },
+                            { label: 'Intereses', name: 'profile.interests', type: 'text' },
+                        ].map(({ label, name, type }) => (
+                            <label key={name} className="block mb-2">
+                                {label}:
+                                <input
+                                    type={type}
+                                    name={name}
+                                    value={
+                                        name === 'profile.dateOfBirth'
+                                            ? formatDateToInput(updatedUser.profile.dateOfBirth)
+                                            : (updatedUser as any)[name.split('.')[0]][name.split('.')[1]]
+                                    }
+                                    onChange={handleChange}
+                                    className="border p-2 mb-4 w-full"
+                                />
+                            </label>
+                        ))}
 
                         <div className="flex justify-between mt-4">
-                            <button type="button" className="btn" onClick={onClose}>Cerrar</button>
-                            <button type="button" className="btn" onClick={handleSave}>Guardar cambios</button>
+                            <button type="button" className="btn btn-secondary" onClick={onClose}>Cerrar</button>
+                            <button type="button" className="btn btn-primary" onClick={handleSave}>Guardar</button>
                         </div>
                     </form>
                 )}
@@ -292,3 +189,4 @@ const ModalEditUser: React.FC<ModalEditUserProps> = ({ user, onClose, onSave }) 
 };
 
 export default ModalEditUser;
+
