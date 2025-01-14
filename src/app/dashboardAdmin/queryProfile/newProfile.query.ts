@@ -47,9 +47,11 @@ export const fetchCreateProfile = async (
             throw new Error("Token no disponible, inicia sesión nuevamente.");
         }
 
+        console.log("datos de perfil", profile);
+
         const response = await axios({
             method: "POST",
-            url: `${backendUrl}api/user/${userId}/profile`, // Endpoint de creación del perfil
+            url: `${backendUrl}/api/user/profile`, // Endpoint de creación del perfil
             headers: {
                 "Content-Type": "application/json",
                 "x-api-key": backendUrlKey,

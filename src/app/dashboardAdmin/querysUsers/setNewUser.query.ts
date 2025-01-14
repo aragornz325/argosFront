@@ -6,6 +6,7 @@ interface UserDTO {
     email: string;
     username: string;
     password: string;
+    role:string
 }
 
 // Interfaz para la respuesta de crear usuario
@@ -32,9 +33,11 @@ export const fetchCreateUser = async (user: UserDTO): Promise<CreateUserResponse
             throw new Error("Token no disponible, inicia sesión nuevamente.");
         }
 
+        //console.log("datos de usuario",user)
+
         const response = await axios({
             method: "POST",
-            url: `${backendUrl}api/user`, // Endpoint de creación de usuario
+            url: `${backendUrl}/api/user`, // Endpoint de creación de usuario
             headers: {
                 "Content-Type": "application/json",
                 "x-api-key": backendUrlKey,

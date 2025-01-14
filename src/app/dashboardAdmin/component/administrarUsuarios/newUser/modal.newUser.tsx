@@ -6,6 +6,7 @@ interface UserDTO {
     email: string;
     username: string;
     password: string;
+    role:string
 }
 
 interface ProfileDTO {
@@ -33,6 +34,7 @@ const ModalNewUser: React.FC = () => {
         email: '',
         username: '',
         password: '',
+        role:'BASIC'
     });
     const [confirmPassword, setConfirmPassword] = useState('');
     const [profileData, setProfileData] = useState<ProfileDTO>({
@@ -59,7 +61,7 @@ const ModalNewUser: React.FC = () => {
         setIsOpen(!isOpen);
     };
 
-    const handleUserChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleUserChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setUserData({
             ...userData,
@@ -87,19 +89,22 @@ const ModalNewUser: React.FC = () => {
         }
         try {
             setLoading(true);
-
+            
             // Enviar los datos del usuario (UserDTO)
+            console.log("user data:",userData);
             const userResponse = await fetchCreateUser(userData);
             if (!userResponse) {
                 throw new Error('Error al crear el usuario');
             }
-
+            
+            console.log("profileResponse user id:",userResponse.id);
             // Enviar los datos del perfil (ProfileDTO) con el `userId` del usuario creado
-            const profileResponse = await fetchCreateProfile(profileData, userResponse.userId);
-
+            //const profileResponse = await fetchCreateProfile(profileData, userResponse.id);
+            
+            /*
             if (!profileResponse) {
                 throw new Error('Error al crear el perfil');
-            }
+            }*/ 
 
             alert('Usuario y perfil creados exitosamente');
             toggleModal(); // Cerrar el modal después de éxito
@@ -169,6 +174,17 @@ const ModalNewUser: React.FC = () => {
                             required
                         />
                         
+                        <select
+                            name="role"
+                            value={userData.role}
+                            onChange={handleUserChange}
+                            className="p-2 border rounded"
+                        >
+                            <option value="ADMIN">Administrador</option>
+                            <option value="BASIC">Basico</option>
+                        </select>
+                        
+                        {/* 
                         <h2 className="col-span-2 text-lg font-bold">Datos del Perfil</h2>
                         <input
                             type="text"
@@ -209,7 +225,6 @@ const ModalNewUser: React.FC = () => {
                         >
                             <option value="male">Masculino</option>
                             <option value="female">Femenino</option>
-                            <option value="otro">Femenino</option>
                         </select>
 
                         <input
@@ -300,7 +315,7 @@ const ModalNewUser: React.FC = () => {
                             onChange={handleProfileChange}
                             className="p-2 border rounded"
                         />
-
+                             */}
                         {/* Botones alineados a la derecha en la columna derecha */}
                         <div></div> {/* Espacio vacío en la columna izquierda */}
                         <div className="flex justify-end gap-2"> {/* Columna derecha con botones alineados */}
