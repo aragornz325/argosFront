@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { fetchAllUsers } from "../../querysUsers/getUsers.querys";
+import { fetchDeleteUser } from "../../querysUsers/deleteUser.query";
 import ModalEditUser from './modalEditUser';
 import ModalNewUser from './newUser/modal.newUser';
 
@@ -72,6 +73,10 @@ const UserAdmin: React.FC = () => {
     const year = d.getFullYear();
     return `${day}-${month}-${year}`;
 };
+    //actualizar la lista de usuarios en la UI
+    const removeUserFromList = (userId: string) => {
+      setUsers(prevUsers => prevUsers ? prevUsers.filter(user => user.id !== userId) : null);
+    };
 
   return (
     <div>
@@ -110,6 +115,26 @@ const UserAdmin: React.FC = () => {
                     }}
                   >
                     Editar
+                  </button>
+
+                  <button
+                      className="btn btn-secondary"
+                      onClick={async () => {
+                          const confirmDelete = confirm(`¿Estás seguro de que deseas eliminar al usuario ${user.username}?`);
+                          if (confirmDelete) {
+                              try {
+                                  console.log("ID del usuario a eliminar:", user.id); // Verifica el ID
+                                  await fetchDeleteUser(user.id); // Llama al fetchDeleteUser con el ID del usuario
+                                  console.log(`Usuario ${user.username} eliminado con éxito`);
+                                  removeUserFromList(user.id); // Actualiza la lista en la UI
+                              } catch (error) {
+                                  console.error("Error al eliminar el usuario:", (error as any).message);
+                                  alert("No se pudo eliminar el usuario. Por favor, intenta nuevamente.");
+                              }
+                          }
+                      }}
+                  >
+                      Eliminar
                   </button>
                 </div>
               </div>

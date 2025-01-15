@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { fetchCreateUser } from '@/app/dashboardAdmin/querysUsers/setNewUser.query';
 import { fetchCreateProfile } from '@/app/dashboardAdmin/queryProfile/newProfile.query';
 
+
 interface UserDTO {
     email: string;
     username: string;
@@ -27,6 +28,10 @@ interface ProfileDTO {
     interests: string;
     socialMediaLinks: string;
 }
+
+interface ButtonDeleteUserProps {
+    userId: string;
+} 
 
 const ModalNewUser: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
